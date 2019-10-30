@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import './listings.css';
+import './css/listings.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class Listings extends React.Component {
