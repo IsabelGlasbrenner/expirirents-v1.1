@@ -1,6 +1,4 @@
 # expirirents-v1.1
-expirirents v1.1
-
 ## Implementation
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
