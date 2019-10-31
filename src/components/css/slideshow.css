@@ -1,0 +1,33 @@
+.slide-container {
+  width: 100%;
+  margin: auto; 
+}
+
+.each-slide > div {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+}
+
+.each-slide span {
+  padding: 20px;
+  font-size: 20px;
+  background: #efefef;
+  text-align: center;
+}
+
+.each-fade {
+  display: flex;
+}
+
+.each-fade .image-container {
+  max-width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.each-fade .image-container img {
+  max-width: 100%;
+  object-fit: cover;
+}

@@ -1,18 +1,48 @@
 import React from 'react';
 import logo from './logo.svg';
-import './listings.css';
+import './css/listings.css';
+import Slideshow from './components/slideshow.js';
+import Footer from './components/footer.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class Listings extends React.Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Listings
-          </p>
-        </header>
+      <div className="page">
+        <div className="grid-container">
+          <div className="card">
+            <Slideshow/>
+            <div class="container">
+              <h4><b>John Doe</b></h4>
+              <p>Architect and Engineer</p>
+            </div>
+          </div>
+          
+          <div className="card">
+            <Slideshow/>
+            <div class="container">
+              <h4><b>John Doe</b></h4>
+              <p>Architect and Engineer</p>
+            </div>
+          </div>
+          
+          <div className="card">
+            <Slideshow/>
+            <div class="container">
+              <h4><b>John Doe</b></h4>
+              <p>Architect and Engineer</p>
+            </div>
+          </div>
+          
+          <div className="card">
+            <Slideshow/>
+            <div class="container">
+              <h4><b>John Doe</b></h4>
+              <p>Architect and Engineer</p>
+            </div>
+          </div>
+        </div>
+        <Footer></Footer>
       </div>
     );
   }
