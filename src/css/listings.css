@@ -12,11 +12,23 @@ code {
     monospace;
 }
 
+.page {
+  min-height: 100%;
+  position: relative;
+}
+
+.filters {
+  display: grid;
+  grid-gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  padding: 20px 75px;
+}
+
 .grid-container {
   display: grid;
   grid-gap: 25px;
   grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-  padding: 2px 75px;
+  padding: 20px 75px;
 }
 
 .card {
@@ -32,3 +44,13 @@ code {
 .container{
   padding: 2px 16px;
 }
+
+hr { 
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-top: 1px gray;
+} 
