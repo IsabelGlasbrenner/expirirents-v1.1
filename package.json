@@ -6,6 +6,7 @@
     "@progress/kendo-react-dropdowns": "^3.6.0",
     "@progress/kendo-react-intl": "^3.6.0",
     "react": "^16.11.0",
+    "react-booking-calendar": "^1.0.3",
     "react-dom": "^16.11.0",
     "react-dropdown": "^1.6.4",
     "react-router-dom": "^5.1.2",

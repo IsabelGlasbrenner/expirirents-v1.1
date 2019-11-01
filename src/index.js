@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './css/index.css';
 import App from './App';
 import Listings from './listings';
+import SingleListing from './single-listing';
 import * as serviceWorker from './serviceWorker';
 
 const routing = (
@@ -11,6 +12,7 @@ const routing = (
     <div>
       <Route exact path="/" component={App} />
       <Route path="/listings" component={Listings} />
+      <Route path="/single-listing" component={SingleListing} />
     </div>
   </Router>
 )

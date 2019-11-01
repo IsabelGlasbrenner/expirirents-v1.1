@@ -2,6 +2,10 @@
 ## Implementation
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### Setup
+
+You'll need node and npm installed. Clone the repo and run `npm install` in terminal.
+
 ### `npm start`
 
 Runs the app in the development mode.<br />

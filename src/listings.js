@@ -30,8 +30,17 @@ class Listings extends React.Component {
           <div className="grid-container">
             <div className="card">
               <Slideshow/>
+              <div className="container">
+                  <p><b>[TYPE]</b></p>
+                  <p>[LOCATION]</p>
+                  <p>[COST]</p>
+              </div>
+            </div>
+            
+            <div className="card">
+              <Slideshow/>
               <div class="container">
-                <h4><b>[TYPE]</b></h4>
+                <p><b>[TYPE]</b></p>
                 <p>[LOCATION]</p>
                 <p>[COST]</p>
               </div>
@@ -40,7 +49,7 @@ class Listings extends React.Component {
             <div className="card">
               <Slideshow/>
               <div class="container">
-                <h4><b>[TYPE]</b></h4>
+                <p><b>[TYPE]</b></p>
                 <p>[LOCATION]</p>
                 <p>[COST]</p>
               </div>
@@ -49,16 +58,7 @@ class Listings extends React.Component {
             <div className="card">
               <Slideshow/>
               <div class="container">
-                <h4><b>[TYPE]</b></h4>
-                <p>[LOCATION]</p>
-                <p>[COST]</p>
-              </div>
-            </div>
-            
-            <div className="card">
-              <Slideshow/>
-              <div class="container">
-                <h4><b>[TYPE]</b></h4>
+                <p><b>[TYPE]</b></p>
                 <p>[LOCATION]</p>
                 <p>[COST]</p>
               </div>

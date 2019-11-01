@@ -1,0 +1,35 @@
+.top-row {
+  display: inline;
+}
+
+.slides {
+  float: left;
+  transition: 0.3s;
+  border-radius: 5px;
+  width: 50%;
+  height: 50%;
+  margin: 20px 75px;
+  padding: 10px;
+}
+
+.info {
+  padding: 20px 75px;
+  width: 50%;
+}
+
+.dates {
+  float: right;
+  padding: 30px 75px;
+  width: 25%;
+}
+
+button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
