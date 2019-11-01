@@ -2,12 +2,12 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+.Mountains {
+  max-width: 100%;
+  max-height: auto;
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -17,6 +17,25 @@
   color: white;
 }
 
-.App-link {
-  color: #09d3ac;
+.searchBox {
+  height: 40px;
+  width: 70%;
+  background-color: #ffffff;
+  position: absolute;
+  top: 250px;
+  border-radius: 5px;
+}
+
+.heading {
+  position: absolute;
+  top: 130px;
+  color: #012e60;
+}
+
+.input {
+  color: #000000;
+  width: 90%;
+  height: 30px;
+  border-radius: 5px;
+  border-style: none;
 }
