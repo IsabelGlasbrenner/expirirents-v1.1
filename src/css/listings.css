@@ -12,6 +12,16 @@ code {
     monospace;
 }
 
+h2 {
+  padding: 0px 75px;
+  color: rgb(65, 65, 65);
+}
+
+h4 {
+  padding: 0px 75px;
+  font-weight: 200;
+}
+
 .page {
   min-height: 100%;
   position: relative;

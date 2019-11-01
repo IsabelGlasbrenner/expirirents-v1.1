@@ -1,15 +1,24 @@
 footer {
-  position: fixed;
+  position: relative;
   left: 0;
   bottom: 0;
   width: 100%;
+  margin: auto;
   background-color: rgb(27, 27, 27);
   color: white;
   text-align: center;
 }
 
 ul li{
-  display:inline-block;
+  display: inline;
+  text-align: center;
   padding: 10px;
-
 }
+
+a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+

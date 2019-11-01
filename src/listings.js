@@ -12,55 +12,62 @@ class Listings extends React.Component {
 
   render() {
     return (
-      <div className="page">
-        <div className="filters">
-          <Dropdown options={this.opt} className='myClassName' />
-          <Dropdown options={this.opt} className='myClassName' />
-          <Dropdown options={this.opt} className='myClassName' />
-        </div>
+      <div className="parent">
+        <div className="page">
+          <div className="filters">
+            <Dropdown options={this.opt} className='myClassName' />
+            <Dropdown options={this.opt} className='myClassName' />
+            <Dropdown options={this.opt} className='myClassName' />
+          </div>
 
-        <hr/>
+          <hr/>
 
-        <div className="grid-container">
-          <div className="card">
-            <Slideshow/>
-            <div class="container">
-              <h4><b>[TYPE]</b></h4>
-              <p>[LOCATION]</p>
-              <p>[COST]</p>
-            </div>
+          <div>
+            <h2>Find your next rental</h2>
+            <h4>Explore hundreds of listings</h4>
           </div>
-          
-          <div className="card">
-            <Slideshow/>
-            <div class="container">
-              <h4><b>[TYPE]</b></h4>
-              <p>[LOCATION]</p>
-              <p>[COST]</p>
+        
+          <div className="grid-container">
+            <div className="card">
+              <Slideshow/>
+              <div class="container">
+                <h4><b>[TYPE]</b></h4>
+                <p>[LOCATION]</p>
+                <p>[COST]</p>
+              </div>
             </div>
-          </div>
-          
-          <div className="card">
-            <Slideshow/>
-            <div class="container">
-              <h4><b>[TYPE]</b></h4>
-              <p>[LOCATION]</p>
-              <p>[COST]</p>
+            
+            <div className="card">
+              <Slideshow/>
+              <div class="container">
+                <h4><b>[TYPE]</b></h4>
+                <p>[LOCATION]</p>
+                <p>[COST]</p>
+              </div>
             </div>
-          </div>
-          
-          <div className="card">
-            <Slideshow/>
-            <div class="container">
-              <h4><b>[TYPE]</b></h4>
-              <p>[LOCATION]</p>
-              <p>[COST]</p>
+            
+            <div className="card">
+              <Slideshow/>
+              <div class="container">
+                <h4><b>[TYPE]</b></h4>
+                <p>[LOCATION]</p>
+                <p>[COST]</p>
+              </div>
             </div>
-          </div>
+            
+            <div className="card">
+              <Slideshow/>
+              <div class="container">
+                <h4><b>[TYPE]</b></h4>
+                <p>[LOCATION]</p>
+                <p>[COST]</p>
+              </div>
+            </div>
+            
           
-         
+          </div>
         </div>
-        <Footer></Footer>
+        <Footer />
       </div>
     );
   }
