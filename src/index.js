@@ -1,11 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import './css/index.css';
-import App from './App';
-import Listings from './listings';
-import SingleListing from './single-listing';
-import * as serviceWorker from './serviceWorker';
+import "./css/index.css";
+import App from "./App";
+import Listings from "./listings";
+import SingleListing from "./single-listing";
+import LoginOrSignup from "./login-or-signup";
+import * as serviceWorker from "./serviceWorker";
 
 const routing = (
   <Router>
@@ -13,11 +14,12 @@ const routing = (
       <Route exact path="/" component={App} />
       <Route path="/listings" component={Listings} />
       <Route path="/single-listing" component={SingleListing} />
+      <Route path="/login-or-signup" component={LoginOrSignup} />
     </div>
   </Router>
-)
+);
 
-ReactDOM.render(routing, document.getElementById('root'));
+ReactDOM.render(routing, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
