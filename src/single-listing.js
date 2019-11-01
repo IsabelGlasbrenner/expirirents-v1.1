@@ -2,6 +2,7 @@ import React from 'react';
 import './css/single-listing.css';
 import Slideshow from './components/slideshow.js';
 import Footer from './components/footer.js';
+import Header from './components/header.js';
 import BookingCalendar from 'react-booking-calendar';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
@@ -19,6 +20,7 @@ class SingleListing extends React.Component {
   render() {
     return (
       <div className="parent">
+        <Header />
         <div className="top-row">
           <div className="slides">
             <Slideshow className="photos"/>
