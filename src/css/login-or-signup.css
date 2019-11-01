@@ -1,0 +1,29 @@
+.body {
+  height: 450px;
+  text-align: center;
+}
+
+.login {
+  background-color: #012e60;
+  width: 450px;
+  margin-top: 150px;
+  margin-left: 35%;
+  border-radius: 5px;
+  color: white;
+}
+
+.heading {
+  margin-left: 30%;
+  color: #012e60;
+  margin-bottom: 50px;
+}
+
+.input {
+  width: 200px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.label {
+  margin: 5px;
+}

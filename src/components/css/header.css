@@ -1,0 +1,14 @@
+.header {
+  height: 70px;
+  background-color: #012e60;
+  text-align: left;
+}
+
+ul {
+  float: right;
+  color: #52abd4;
+}
+
+.logo {
+  height: 70px;
+}
