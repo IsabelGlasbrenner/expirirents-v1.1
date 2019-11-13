@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './css/listings.css';
 import Slideshow from './components/slideshow.js';
 import Footer from './components/footer.js';
