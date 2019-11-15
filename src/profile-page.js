@@ -26,20 +26,20 @@ class ProfilePage extends React.Component {
 
           <TabPanel>
             <p>
-              <b>Mario</b> (<i> In progress</i>) blah
+              <b>My profile</b> (<i> In progress</i>) blah
             </p>
 
           </TabPanel>
 
           <TabPanel>
             <p>
-              <b>Luigi</b> (<i>In progress</i>) blah
+              <b>Change My Credentials</b> (<i>In progress</i>) blah
             </p>
           </TabPanel>
 
           <TabPanel>
             <p>
-              <b>Princess Peach</b> (<i> In progress</i>) blah
+              <b>My Created Listings</b> (<i> In progress</i>) blah
             </p>
           </TabPanel>
 

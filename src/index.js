@@ -6,6 +6,8 @@ import App from "./App";
 import Listings from "./listings";
 import SingleListing from "./single-listing";
 import LoginOrSignup from "./login-or-signup";
+import ProfilePage from "./profile-page";
+
 import * as serviceWorker from "./serviceWorker";
 
 const routing = (
@@ -15,6 +17,7 @@ const routing = (
       <Route path="/listings" component={Listings} />
       <Route path="/single-listing" component={SingleListing} />
       <Route path="/login-or-signup" component={LoginOrSignup} />
+      <Route path="/profile-page" component={ProfilePage} />
     </div>
   </Router>
 );
