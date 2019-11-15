@@ -3,27 +3,126 @@
   text-align: center;
 }
 
-.login {
-  background-color: #012e60;
-  width: 450px;
-  margin-top: 150px;
-  margin-left: 35%;
-  border-radius: 5px;
-  color: white;
+.heading{
+	padding: 20px;
+	font-size: 35px;
+	margin: 10px;
+	text-align: center;
+	width: 100%;
 }
 
-.heading {
-  margin-left: 30%;
-  color: #012e60;
-  margin-bottom: 50px;
+.email-or-password{
+	padding: 10px;
 }
 
-.input {
-  width: 200px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+.login-or-signup{
+	margin: 0px;
+	padding:0px;
+	padding-top: 200px;
+	padding-bottom: 100px;
+	text-align: left;
 }
 
-.label {
-  margin: 5px;
+.form-1{
+	border-style: solid;
+	border-color: #012e60;
+	width: 350px;
+	padding: 20px;
+	border-radius: 5px;
+	float: right;
+	margin-right: 100px;
+}
+
+.form-2{
+	border-style: solid;
+	border-color: #012e60;
+	width: 370px;
+	padding: 20px;
+	border-radius: 5px;
+	float: left;
+	margin-left: 100px;
+}
+
+.field-label{
+	margin-top: 10px;
+	color: #9e9c9b;
+	font-size: 15px;
+}
+
+.input-field{
+	padding: 8px;
+	width: 300px;
+	border-radius: 3px;
+	border-color: #dbdad9;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.password-submit{
+	border-radius: 3px;
+	width: 320px;
+	margin-top: 10px;
+	background-color: #eb8e6d;
+}
+
+.form-title-1{
+	color: #012e60;
+	font-size: 28px;
+	margin: 0px;
+	margin-top: 5px;
+}
+
+.form-title-2{
+	margin: 0px;
+	margin-top: 5px;
+	margin-bottom: 20px;
+	color: #012e60;
+	font-size: 20px;
+}
+
+.half-page{
+	border-right-style: solid;
+	border-color: #e8e8e8;
+	border-width: 2px;
+	height: 500px;
+	vertical-align: middle;
+}
+
+.name-field-1{
+	padding: 8px;
+	width: 100px;
+	border-radius: 3px;
+	border-color: #dbdad9;
+	border-style: solid;
+	border-width: 1px;
+	margin-left: 15px;
+	margin-bottom: 15px;
+}
+
+.name-field-2{
+	padding: 8px;
+	margin-left: 20px;
+	width: 100px;
+	border-radius: 3px;
+	border-color: #dbdad9;
+	border-style: solid;
+	border-width: 1px;
+	margin-bottom: 15px;
+}
+
+.name-field-label-1{
+	margin-top: 10px;
+	margin-left: 15px;
+	font-size: 15px;
+	color: #9e9c9b;
+	width: 150px;
+	margin-bottom: 10px;
+}
+
+.name-field-label-2{
+	margin-top: 10px;
+	font-size: 15px;
+	color: #9e9c9b;
+	width: 150px;
+	margin-bottom: 10px;
 }
