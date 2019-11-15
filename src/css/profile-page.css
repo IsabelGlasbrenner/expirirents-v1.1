@@ -1,0 +1,24 @@
+.top-row {
+    display: inline;
+  }
+  
+  .info {
+    padding: 20px 75px;
+    width: 50%;
+  }
+
+  .ProfilePage {
+    height: 1290px;
+
+  }
+  
+  button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
