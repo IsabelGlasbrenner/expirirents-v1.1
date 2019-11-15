@@ -31,11 +31,21 @@
   top: 130px;
   color: #012e60;
 }
-
-.input {
+.title {
   color: #000000;
-  width: 90%;
-  height: 30px;
+  width: 70%;
+  height: 40px;
   border-radius: 5px;
   border-style: none;
+}
+.input {
+  color: #000000;
+  width: 70%;
+  height: 30px;
+  border-radius: 5px;
+  border-style: ridge;
+}
+.filters {
+  width:250px; 
+  position: relative;
 }
