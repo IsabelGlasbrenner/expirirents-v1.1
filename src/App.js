@@ -15,7 +15,7 @@ class App extends React.Component {
         <header className="App-header">
           <img src={mountains} className="Mountains" alt="Mountains" />
           <h2 className="heading">
-            Check out the ATV's for rent in your area...
+            Check out the random tools for rent in your area...
           </h2>
           <div className="searchBox">
             <label className="input">Search</label>
