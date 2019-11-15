@@ -9,11 +9,6 @@ import { AiOutlineMail } from "react-icons/ai";
 import { FiLock } from "react-icons/fi";
 import { MdPersonOutline } from "react-icons/md";
 import { TiGroupOutline } from "react-icons/ti";
-
-
-
-
-
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const initialState = {
@@ -66,7 +61,7 @@ class LoginOrSignup extends React.Component {
 				<div className="body">
 					<Row className="login-or-signup">
 						<p className="heading"> Login or Signup to get access to your personal profile and the ability to post your ATV's.</p>
-						<Col className="half-page">
+						<Col className="half-page-1">
 							<Form onSubmit={this.handleLogin} className="form-1">
 								<Form.Group>
 									<Col>
@@ -105,7 +100,7 @@ class LoginOrSignup extends React.Component {
 								</Form.Group>
 							</Form>
 						</Col>
-						<Col>
+						<Col className="half-page-2">
 							<Form onSubmit={this.handleLogin} className="form-2">
 								<Form.Group>
 									<Col>
