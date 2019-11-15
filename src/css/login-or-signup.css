@@ -4,7 +4,9 @@
 }
 
 .heading{
-	padding: 20px;
+	padding: 0px;
+	padding-bottom: 20px;
+	padding-top: 20px;
 	font-size: 35px;
 	margin: 10px;
 	text-align: center;
@@ -12,7 +14,8 @@
 }
 
 .email-or-password{
-	padding: 10px;
+	padding: 0px;
+	margin: 0px;
 }
 
 .login-or-signup{
@@ -34,6 +37,7 @@
 }
 
 .form-2{
+	padding-right: 0px;
 	border-style: solid;
 	border-color: #012e60;
 	width: 370px;
@@ -80,7 +84,17 @@
 	font-size: 20px;
 }
 
-.half-page{
+.half-page-1{
+	border-right-style: solid;
+	border-color: #e8e8e8;
+	border-width: 2px;
+	height: 500px;
+	vertical-align: middle;
+}
+
+.half-page-2{
+	padding: 0px;
+	margin: 0px;
 	border-right-style: solid;
 	border-color: #e8e8e8;
 	border-width: 2px;

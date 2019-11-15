@@ -2,6 +2,7 @@
   height: 70px;
   background-color: #012e60;
   text-align: left;
+  width: 100%;
 }
 
 ul {
@@ -9,6 +10,11 @@ ul {
   color: #52abd4;
 }
 
+li {
+	font-weight: 200;
+}
+
 .logo {
-  height: 70px;
+  margin-top: 15px;
+  height: 40px;
 }
