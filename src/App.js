@@ -18,7 +18,7 @@ class App extends React.Component {
             Check out the ATV's for rent in your area...
           </h2>
           <div className="searchBox">
-            <label className="input">Search</label>
+            <label className="input">Location</label>
             <input type="text" className="input" />
           </div>
         </header>
