@@ -8,7 +8,7 @@
 }
 
 .info {
-  padding: 20px 100px;
+  padding: 20px 90px;
   width: 50%;
 }
 
@@ -16,10 +16,6 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-}
-
-.col-fields{
-
 }
 
 .dates {

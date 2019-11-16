@@ -18,7 +18,7 @@ const bookings = [
 ];
 
 const initialState = {
-	listing: {title: "2020 HEARTLAND PIONEER DS320", type: "RV", location: "Madison", price: "$100/Day", description: "This DS320 has plenty of room, and plenty of extras!  Heat, air, toilet, shower, front bed, dinette, couch, tv, radio, sink, stove, microwave, oven, refrigerator, lots of storage, and more.  #162306"}
+	listing: {}
 }
 
 class SingleListing extends React.Component {
@@ -27,7 +27,24 @@ class SingleListing extends React.Component {
 		this.state = initialState;
 	}
 
-  
+	componentDidMount() {
+		const { listID } = this.props.location.state;
+		console.log(listID);
+
+		fetch("http://18.224.3.21/user/getListing", {
+			method: "post",
+			headers: {
+				"Content-Type": "application/json",
+				"Accept": "application/json"
+			},
+			body: JSON.stringify({listingID: listID})
+		})
+		.then(res => res.json())
+		.then(data => {
+			this.setState({listing: data});
+		})
+	}
+
   render() {
     return (
       <div className="parent">
@@ -45,12 +62,12 @@ class SingleListing extends React.Component {
 
         <Row className="info">
 			<Row className="info-fields">
-				<h1><b>{this.state.listing.title}</b></h1>
+				<h1><b>{this.state.listing.vehicleName}</b></h1>
 			</Row>
 			<Row className="info-fields">
 				<Col className="col-fields">
 					<h3>Type</h3>
-					<p>{this.state.listing.type}</p>
+					<p>{this.state.listing.vehicleType}</p>
 				</Col>
 				<Col className="col-fields">
 					<h3>Location</h3>
@@ -58,12 +75,14 @@ class SingleListing extends React.Component {
 				</Col>
 				<Col className="col-fields">
 					<h3>Price</h3>
-					<p>{this.state.listing.price}</p>
+					<p>${this.state.listing.price}/day</p>
 				</Col>
 			</Row>
 			<Row className="info-fields">
-				<h3>Description</h3>
-				<p>{this.state.listing.description}</p>
+				<Col>
+					<h3>Description</h3>
+					<p>{this.state.listing.description}</p>
+				</Col>
 			</Row>
         </Row>
         <Footer />
