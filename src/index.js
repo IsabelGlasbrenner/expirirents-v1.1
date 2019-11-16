@@ -7,6 +7,7 @@ import Listings from "./listings";
 import SingleListing from "./single-listing";
 import LoginOrSignup from "./login-or-signup";
 import ProfilePage from "./profile-page";
+
 import * as serviceWorker from "./serviceWorker";
 
 const routing = (
