@@ -5,26 +5,61 @@ import Footer from "./components/footer.js";
 import Header from "./components/header.js";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+// import DatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
 import adventure_text from "./images/adventure_text.png";
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
+import Helmet from 'react-helmet';
+import DayPicker, { DateUtils } from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
+
+
 class App extends React.Component {
 
   opt = ["Motorcycle", "Dirt Bike", "Mountain Bike", "ATV", "Boat"];
-  state = {
-    stateDate: new Date()
+  // state = {
+  //   stateDate: new Date(),
+  //   endDate: new Date()
+  // };
+
+  // handleChange = date => {
+  //   this.setState({
+  //     startDate: date
+  //   });
+  // };
+
+  static defaultProps = {
+    numberOfMonths: 2,
   };
 
-  handleChange = date => {
-    this.setState({
-      startDate: date
-    });
-  };
+  constructor(props) {
+    super(props);
+    this.handleDayClick = this.handleDayClick.bind(this);
+    this.handleResetClick = this.handleResetClick.bind(this);
+    this.state = this.getInitialState();
+  }
+
+  getInitialState() {
+    return {
+      from: undefined,
+      to: undefined,
+    };
+  }
+
+  handleDayClick(day) {
+    const range = DateUtils.addDayToRange(day, this.state);
+    this.setState(range);
+  }
+
+  handleResetClick() {
+    this.setState(this.getInitialState());
+  }
 
   render() {
+    const { from, to} = this.state;
+    const modifiers = {start: from, end: to};
     return (
       <div className="App">
         <Header />
@@ -34,30 +69,48 @@ class App extends React.Component {
             Check out the ATV's for rent in your area...
           </h2>
           <div className="searchBox">
-            <label className="input">Location</label>
+            <label className="title">Location</label>
             <input type="text" className="input" />
+
+            <Dropdown options={this.opt} className="filters" />
+            <p>
+              {!from && !to && 'Please select the first day.'}
+              {from && !to && 'Please select the last day.'}
+              {from &&
+                to &&
+                `Selected from ${from.toLocaleDateString()} to
+                ${to.toLocaleDateString()}`}{' '}
+              {from && to && (
+                <button className="link" onClick={this.handleResetClick}>
+                  Reset
+            </button>
+              )}
+            </p>
+            <DayPicker
+              className="Selectable"
+              numberOfMonths={this.props.numberOfMonths}
+              selectedDays={[from, { from, to }]}
+              modifiers={modifiers}
+              onDayClick={this.handleDayClick}
+            />
+            {/* <label className="title">
+              From:
+              </label>
+            <DatePicker
+              selected={this.state.startDate}
+              onSelect={this.handleSelect}
+              onChange={this.handleChange}
+            />
             <label className="title">
-                Location:
+              To:
               </label>
-              <input type="text" className="input" />
-              <Dropdown options={this.opt} className="filters"/>
-              <label className="title">
-                From: 
-              </label>
-              <DatePicker
-                selected={this.state.startDate}
-                onSelect={this.handleSelect}
-                onChange={this.handleChange}
-              />
-              <label className="title">
-                To:
-              </label>
-              <DatePicker
-                selected={this.state.startDate}
-                onSelect={this.handleSelect}
-                onChange={this.handleChange}
-              />
-              <input type="submit" value="Search" />
+            <DatePicker
+              selected={this.state.endDate}
+              onSelect={this.handleSelect}
+              onChange={this.handleChange}
+            /> */}
+
+            <input type="submit" value="Search" />
           </div>
         </header>
         <Footer />
