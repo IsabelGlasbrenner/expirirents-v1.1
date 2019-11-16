@@ -4,11 +4,12 @@ import Slideshow from './components/slideshow.js';
 import Footer from './components/footer.js';
 import Header from './components/header.js';
 import BookingCalendar from 'react-booking-calendar';
+import { Container, Row, Col } from 'react-grid-system';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const bookings = [
-  new Date(2016, 7, 1),
-  new Date(2016, 7, 2),
+  new Date(2019, 11, 16),
+  new Date(2019,11, 17),
   new Date(2016, 7, 3),
   new Date(2016, 7, 9),
   new Date(2016, 7, 10),
@@ -16,28 +17,74 @@ const bookings = [
   new Date(2016, 7, 12),
 ];
 
+const initialState = {
+	listing: {}
+}
+
 class SingleListing extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = initialState;
+	}
+
+	componentDidMount() {
+		const { listID } = this.props.location.state;
+		console.log(listID);
+
+		fetch("http://18.224.3.21/user/getListing", {
+			method: "post",
+			headers: {
+				"Content-Type": "application/json",
+				"Accept": "application/json"
+			},
+			body: JSON.stringify({listingID: listID})
+		})
+		.then(res => res.json())
+		.then(data => {
+			this.setState({listing: data});
+		})
+	}
+
   render() {
     return (
       <div className="parent">
         <Header />
-        <div className="top-row">
+        <Row className="top-row">
           <div className="slides">
             <Slideshow className="photos"/>
           </div>
           
           <div className="dates">
-            <BookingCalendar className="calendar" bookings={bookings} />
+            {/* <BookingCalendar className="calendar" bookings={bookings} /> */}
             <button>Book Now</button>
           </div>
-        </div>
+        </Row>
 
-        <div className="info">
-          <h1><b>TITLE</b></h1>
-          <p>[TYPE]</p>
-          <p>[COST]</p>
-          <p>[DESCRIPTION]<br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
+        <Row className="info">
+			<Row className="info-fields">
+				<h1><b>{this.state.listing.vehicleName}</b></h1>
+			</Row>
+			<Row className="info-fields">
+				<Col className="col-fields">
+					<h3>Type</h3>
+					<p>{this.state.listing.vehicleType}</p>
+				</Col>
+				<Col className="col-fields">
+					<h3>Location</h3>
+					<p>{this.state.listing.location}</p>
+				</Col>
+				<Col className="col-fields">
+					<h3>Price</h3>
+					<p>${this.state.listing.price}/day</p>
+				</Col>
+			</Row>
+			<Row className="info-fields">
+				<Col>
+					<h3>Description</h3>
+					<p>{this.state.listing.description}</p>
+				</Col>
+			</Row>
+        </Row>
         <Footer />
       </div>
     );
