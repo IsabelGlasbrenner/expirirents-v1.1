@@ -1,9 +1,4 @@
-.top-row {
-  display: inline;
-}
-
 .slides {
-  float: left;
   transition: 0.3s;
   border-radius: 5px;
   width: 50%;
@@ -13,18 +8,27 @@
 }
 
 .info {
-  padding: 20px 75px;
+  padding: 20px 100px;
   width: 50%;
 }
 
+.info-fields {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.col-fields{
+
+}
+
 .dates {
-  float: right;
   padding: 30px 75px;
   width: 25%;
 }
 
 button {
-  background-color: #4CAF50;
+  background-color: #eb8e6d;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -32,4 +36,12 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+
+h1, h3 {
+	color: #012e60;
+}
+
+.calendar {
+	background: white;
 }
