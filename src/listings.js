@@ -9,11 +9,12 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from 'react-grid-system';
 
 const initialState = {
+	data: [],
 	fData: []
 }
 
 class Listings extends React.Component {
-	opt = [ "One", "Two", "Three"];
+	optType = ["", "ATV", "RV", "Boat"];
 
 	constructor(props) {
 		super(props);
@@ -31,21 +32,46 @@ class Listings extends React.Component {
 		.then(res => res.json())
 		.then(data => {
 			console.log(data);
+			this.setState({data: data});
 			this.setState({fData: data});
 		})
-		console.log(this.state.fData);
+	}
+
+	handleChange = val => (event) => {   
+		if(val == 'f1') {
+			this.setState({fData: this.filterData(this.state.data, event.target.value)})
+		} else if (val == 'f2') {
+
+		} else {
+
+		}
+	}
+
+	filterData(data, filtVal) {
+		var filtData = data;
+		filtData = filtData.filter(function (filtData) {
+			if(filtVal == "") {
+			  return true;
+			}
+			return filtData.vehicleType === filtVal;
+		})
+		return filtData;
 	}
 	
 	render() {
-		console.log(this.state.fData);	
 		return (
 			<div className="parent">
         <Header />
         <div className="page">
-          <div className="filters">
-            <Dropdown options={this.opt} className='myClassName' />
-            <Dropdown options={this.opt} className='myClassName' />
-            <Dropdown options={this.opt} className='myClassName' />
+			<div className="filters">
+		   	<select className="form-control" name="" id="" onChange={this.handleChange("f1")}>
+				<option value="" selected=""></option>
+				<option value="off roader">off roader</option>
+				<option value="RV">RV</option>
+				<option value="Boat">Boat</option>
+			</select>
+            <Dropdown options={this.optType} value={this.optType[0]} onChange={this.handleChange(2)} />
+            <Dropdown options={this.optType} value={this.optType[0]} onChange={this.handleChange(3)} />
           </div>
 
           <hr/>
@@ -62,8 +88,8 @@ class Listings extends React.Component {
 					<div key={i} className="card">
 						<Slideshow/>
 						<Link to={{pathname: '/single-listing', state: {listID: listings._id}}}>
-							<div className="container">
-								<Row>
+							<Container fluid style={{ lineHeight: '3px' }} className="container">
+								<Row justify="start">
 									<Col>
 										<p id="type"><span>{listings.vehicleType}</span></p>
 									</Col>
@@ -77,7 +103,7 @@ class Listings extends React.Component {
 										<h5>${listings.price}/day</h5>
 									</Col>
 								</Row>
-							</div>
+							</Container>
 						</Link>
 					</div>
 				);

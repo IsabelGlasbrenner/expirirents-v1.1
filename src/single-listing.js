@@ -3,19 +3,8 @@ import './css/single-listing.css';
 import Slideshow from './components/slideshow.js';
 import Footer from './components/footer.js';
 import Header from './components/header.js';
-import BookingCalendar from 'react-booking-calendar';
 import { Container, Row, Col } from 'react-grid-system';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
-const bookings = [
-  new Date(2019, 11, 16),
-  new Date(2019,11, 17),
-  new Date(2016, 7, 3),
-  new Date(2016, 7, 9),
-  new Date(2016, 7, 10),
-  new Date(2016, 7, 11),
-  new Date(2016, 7, 12),
-];
 
 const initialState = {
 	listing: {}
@@ -45,6 +34,10 @@ class SingleListing extends React.Component {
 		})
 	}
 
+	handleSubmit = async event => {
+		console.log("This button doesn't have anywhere to redirect you yet. Sorry!")
+	}
+
   render() {
     return (
       <div className="parent">
@@ -55,8 +48,7 @@ class SingleListing extends React.Component {
           </div>
           
           <div className="dates">
-            {/* <BookingCalendar className="calendar" bookings={bookings} /> */}
-            <button>Book Now</button>
+            <button onClick={this.handleSubmit}>Book Now</button>
           </div>
         </Row>
 
