@@ -10,8 +10,13 @@ import { FiLock } from "react-icons/fi";
 import { MdPersonOutline } from "react-icons/md";
 import { TiGroupOutline } from "react-icons/ti";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+
 
 const initialState = {
+	firstName: "",
+	lastName: "",
+	phoneNumber: "",
 	email: "",
 	password: ""
 };
@@ -46,13 +51,41 @@ class LoginOrSignup extends React.Component {
 		})
 			.then(res => res.json())
 			.then(data => {
-				if (data.id) {
-					this.props.history.push("/", { email: this.state.email });
-				} else {
-					alert("Email and password do not match. Please try again!");
-				}
+				console.log("Login name: " + data);
+				console.log(this.props);
+				this.props.history.push("/", { name: data });
 			});
-	};
+	}
+
+	handleRegister = async event => {
+		event.preventDefault();
+		console.log("State: " + this.state.firstName + ", " + this.state.email);
+		if (this.state.firstName === "" || this.state.lastName === "" || this.state.phoneNumber === "" || this.state.email === "" || this.state.password === "")
+			alert("Enter Register Credentials");
+		else {
+			fetch("http://18.224.3.21/user/register", {
+				method: "post",
+				headers: {
+					"Content-Type": "application/json",
+					"Accept": "application/json"
+				},
+				body: JSON.stringify({
+					firstname: this.state.firstName,
+					lastname: this.state.lastName,
+					phone_number: this.state.phoneNumber,
+					email: this.state.email,
+					password: this.state.password
+				})
+			})
+				.then(res => res.json())
+				.then(data => {
+					console.log("this is the data: " + data);
+					console.log(this.props);
+					this.props.history.push("/", { name: data });
+				})
+				.catch(err => { console.log(err); })
+		}
+	}
 
 	render() {
 		return (
@@ -101,7 +134,7 @@ class LoginOrSignup extends React.Component {
 							</Form>
 						</Col>
 						<Col className="half-page-2">
-							<Form onSubmit={this.handleLogin} className="form-2">
+							<Form onSubmit={this.handleRegister} className="form-2">
 								<Form.Group>
 									<Col>
 										<p className="form-title-1">Dont have an account?</p>
@@ -116,15 +149,15 @@ class LoginOrSignup extends React.Component {
 									<Col>
 										<Row>
 											<Form.Control
-												type="email"
-												name="email"
+												type="input"
+												name="firstName"
 												onChange={this.handleChange}
 												className="name-field-1"
 												required
 											/>
 											<Form.Control
-												type="email"
-												name="email"
+												type="input"
+												name="lastName"
 												onChange={this.handleChange}
 												className="name-field-2"
 												required
@@ -136,7 +169,7 @@ class LoginOrSignup extends React.Component {
 									</Col>
 									<Col className="email-or-password">
 										<Form.Control
-											type="email"
+											type="input"
 											name="email"
 											onChange={this.handleChange}
 											className="input-field"
@@ -156,19 +189,19 @@ class LoginOrSignup extends React.Component {
 										/>
 									</Col>
 									<Col>
-										<Form.Label className="field-label">Confirm Password    <FiLock /></Form.Label>
+										<Form.Label className="field-label">Phone Number    <FiLock /></Form.Label>
 									</Col>
 									<Col className="email-or-password">
 										<Form.Control
-											type="Password"
-											name="password"
+											type="input"
+											name="phoneNumber"
 											onChange={this.handleChange}
 											className="input-field"
 											required
 										/>
 									</Col>
 									<Col>
-										<Button className="password-submit" onClick={this.handleLogin}>
+										<Button className="password-submit" onClick={this.handleRegister}>
 											Submit
 										</Button>
 									</Col>
@@ -183,4 +216,4 @@ class LoginOrSignup extends React.Component {
 	}
 }
 
-export default LoginOrSignup;
+export default withRouter(LoginOrSignup);
