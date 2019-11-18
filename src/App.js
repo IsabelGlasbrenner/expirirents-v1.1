@@ -8,6 +8,7 @@ import 'react-dropdown/style.css';
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
 import adventure_text from "./images/adventure_text.png";
+import SelectUSState from 'react-select-us-states';
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import moment from 'moment';
@@ -62,7 +63,7 @@ class App extends React.Component {
   printState() {
 	  console.log(this.state);
   }
-  
+
 
   render() {
 	{this.printState()}
@@ -77,10 +78,9 @@ class App extends React.Component {
             Check out the recreational items for rent in your area...
           </h2>
           <div className="searchBox">
-            <input type="text" className="input" placeholder="Location" onChange={this.handleLocChange}/>
-
+		  	<SelectUSState className="state-dropdown" onChange={this.handleLocChange("loc")}/>
 			<select className="form-control" onChange={this.handleTypeChange("type")}>
-				<option value="" selected="">Type...</option>
+				<option value="">Type...</option>
 				<option value="off roader">off roader</option>
 				<option value="RV">RV</option>
 				<option value="Boat">Boat</option>

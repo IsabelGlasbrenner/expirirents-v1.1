@@ -108,7 +108,7 @@ class Listings extends React.Component {
 												<p id="type"><span>{listings.vehicleType}</span></p>
 											</Col>
 											<Col>
-												<p id="location">{listings.location}</p>
+												<p id="location">{listings.city}</p>
 											</Col>
 										</Row>
 										<Row>
