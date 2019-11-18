@@ -39,6 +39,7 @@ h5 {
   grid-gap: 25px;
   grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
   padding: 20px 75px;
+  width: 90%;
 }
 
 .grid-container {
@@ -96,4 +97,15 @@ h1, h3 {
 #location{
 	color: gray;
 	overflow-wrap: break-word;
+}
+
+.form-control {
+	padding: 10px 5px;
+	font-size: 16px;
+	font-weight: lighter;
+	color: rgb(65, 65, 65);
+}
+
+.form-control-selected {
+	background-color: green;
 }
