@@ -6,20 +6,52 @@ import "./css/profile-page.css";
 
 import Footer from "./components/footer.js";
 import Header from "./components/header.js";
+import { Container, Row, Col } from 'react-grid-system';
 
 import mountains from "./images/mountains.jpg";
 import adventure_text from "./images/adventure_text.png";
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
+const initialState = {
+	profile: {}
+}
+
 class ProfilePage extends React.Component {
+  constructor(props) {
+		super(props);
+		this.state = initialState;
+  }
+  
+  componentDidMount() {
+    //const { ProfileID } = this.props.location.state;
+    //console.log(ProfileID);
+    
+		fetch("http://18.224.3.21/user/profile", {
+			method: "post",
+			headers: {
+				"Content-Type": "application/json",
+				"Accept": "application/json"
+      },
+      //body: JSON.stringify({Profiles: ProfileID})
+
+		})
+		.then(res => res.json())
+		.then(data => {
+			console.log(data);
+			this.setState({profile: data});
+		})
+	}
+
   render() {
     return (
       <div className="ProfilePage">
         <Header />
-        <h1>
-          Account
-        </h1>
+
+        <Row className="info">
+        <h1><b>{this.state.profile.firstName}</b></h1>
+
+			  </Row>
         <h2>
           (Name), (email)
         </h2>
@@ -28,7 +60,7 @@ class ProfilePage extends React.Component {
             <Tab>Profile</Tab>
             <Tab>Update Password</Tab>
             <Tab>Your Listings</Tab>
-            <Tab disabled>Luigi</Tab>
+            <Tab disabled>Eh?</Tab>
           </TabList>
 
           <TabPanel>

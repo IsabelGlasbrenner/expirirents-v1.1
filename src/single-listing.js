@@ -26,7 +26,7 @@ class SingleListing extends React.Component {
 				"Content-Type": "application/json",
 				"Accept": "application/json"
 			},
-			body: JSON.stringify({listingID: listID})
+			//body: JSON.stringify({listingID: listID})
 		})
 		.then(res => res.json())
 		.then(data => {
