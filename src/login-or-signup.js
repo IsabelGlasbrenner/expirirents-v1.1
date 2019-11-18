@@ -12,6 +12,8 @@ import { TiGroupOutline } from "react-icons/ti";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 
+import UserService from "./services/user-service"
+
 
 const initialState = {
 	firstName: "",
@@ -23,6 +25,7 @@ const initialState = {
 
 class LoginOrSignup extends React.Component {
 	constructor(props) {
+
 		super(props);
 		this.state = initialState;
 	}
@@ -54,7 +57,8 @@ class LoginOrSignup extends React.Component {
 				console.log("Login name: " + data);
 				console.log(this.props);
 				this.props.history.push("/", { name: data });
-			});
+			})
+			.then(UserService.setLoggedIn(true));
 	}
 
 	handleRegister = async event => {
@@ -85,6 +89,9 @@ class LoginOrSignup extends React.Component {
 				})
 				.catch(err => { console.log(err); })
 		}
+
+		// Finally!
+		UserService.setLoggedIn(true);
 	}
 
 	render() {

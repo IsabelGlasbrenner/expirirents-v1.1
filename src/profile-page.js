@@ -24,8 +24,8 @@ class ProfilePage extends React.Component {
   }
   
   componentDidMount() {
-    //const { ProfileID } = this.props.location.state;
-    //console.log(ProfileID);
+    const { email } = this.props.location.state;
+    console.log(email);
     
 		fetch("http://18.224.3.21/user/profile", {
 			method: "post",
@@ -33,7 +33,7 @@ class ProfilePage extends React.Component {
 				"Content-Type": "application/json",
 				"Accept": "application/json"
       },
-      //body: JSON.stringify({Profiles: ProfileID})
+      body: JSON.stringify({email})
 
 		})
 		.then(res => res.json())
