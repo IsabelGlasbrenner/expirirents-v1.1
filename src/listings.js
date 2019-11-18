@@ -64,10 +64,15 @@ class Listings extends React.Component {
 			}
 			return filtData.vehicleType === filtVal;
 		})
+		console.log(this.state);
 		return filtData;
 	}
-	
+
+	printState() {
+		console.log(this.state);
+	}
 	render() {
+		{this.printState()}
 		return (
 			<div className="parent">
 				<Header />
@@ -118,7 +123,6 @@ class Listings extends React.Component {
 						);
 					})
 				}</div>
-			
 				<Footer />
      	 	</div>
 	  	</div>

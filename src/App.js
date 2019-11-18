@@ -18,16 +18,17 @@ import { formatDate, parseDate } from 'react-day-picker/moment';
 
 
 class App extends React.Component {
-
   opt = ["Motorcycle", "Dirt Bike", "Mountain Bike", "ATV", "Boat"];
+
   constructor(props) {
     super(props);
     this.handleFromChange = this.handleFromChange.bind(this);
     this.handleToChange = this.handleToChange.bind(this);
     this.state = {
-      from: undefined,
-	  to: undefined,
-	  type: undefined
+      from: "",
+	  to: "",
+	  type: "",
+	  location: ""
     };
   }
 
@@ -41,13 +42,13 @@ class App extends React.Component {
     }
   }
   
-  handleLocChange = () => (event) => {
+  handleLocChange = val => (event) => {
 	  this.setState({location: event.target.value});
-  }
-  
-  handleTypeChange = () => (event) => {
-	  this.setState({type: event.target.value});
-  }
+	}
+	
+	handleTypeChange = val => (event) => {
+		this.setState({type: event.target.value});
+	}
 
   handleFromChange(from) {
     // Change the from date and focus the "to" input field
@@ -58,7 +59,13 @@ class App extends React.Component {
 	this.setState({ to }, this.showFromMonth);
   }
 
+  printState() {
+	  console.log(this.state);
+  }
+  
+
   render() {
+	{this.printState()}
     const { from, to} = this.state;
     const modifiers = {start: from, end: to};
     return (
@@ -72,7 +79,7 @@ class App extends React.Component {
           <div className="searchBox">
             <input type="text" className="input" placeholder="Location" onChange={this.handleLocChange}/>
 
-			<select className="form-control" name="" id="" onChange={this.handleTypeChange}>
+			<select className="form-control" onChange={this.handleTypeChange("type")}>
 				<option value="" selected="">Type...</option>
 				<option value="off roader">off roader</option>
 				<option value="RV">RV</option>
@@ -145,7 +152,7 @@ class App extends React.Component {
 					`}</style>
 				</Helmet>
 			</div>
-            <Link to={{pathname: '/listings', state: {to: this.state.to, from: this.state.from, type: this.state.type}}}><input type="submit" value="Search" /></Link>
+            <Link to={{pathname: '/listings', state: {location: this.state.location, to: this.state.to, from: this.state.from, type: this.state.type}}}><input type="submit" value="Search" /></Link>
           </div>
         </header>
         <Footer />
