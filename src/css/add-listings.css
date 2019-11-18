@@ -1,0 +1,57 @@
+.parent{
+	width: 100%;
+	text-align: center;
+}
+
+.formgroup{
+	margin-left: 40%;
+	border-style: solid;
+	border-radius: 10px;
+
+	margin-bottom: 200px;
+	border-color: #012e60;
+	text-align: left;
+	width: 20%;
+	min-height: 750px;
+}
+
+.form-title{
+	font-weight: 200;
+	font-size: 35px;
+	padding-bottom: 40px;
+}
+
+.input-fields{
+	padding: 10px;
+	border-style: solid;
+	border-color: #012e60;
+	border-radius: 3px;
+	border-width: 1px;
+	width: 200px;
+	margin-bottom: 30px;
+}
+
+.production-year{
+	padding: 10px;
+	border-style: solid;
+	border-color: #012e60;
+	border-radius: 3px;
+	border-width: 1px;
+	width: 200px;
+}
+
+.field-labels{
+	padding-left: 20px;
+}
+
+.form-submit{
+	border-radius: 3px;
+	width: 320px;
+	margin-top: 10px;
+	background-color: #eb8e6d;
+}
+
+.field{
+	padding-left: 20px;
+}
+

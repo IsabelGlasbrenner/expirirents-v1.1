@@ -7,6 +7,9 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from 'react-grid-system';
+import { IoMdAdd } from "react-icons/io";
+import { Button } from 'react-floating-action-button';
+
 
 const initialState = {
 	data: [],
@@ -58,10 +61,19 @@ class Listings extends React.Component {
 		return filtData;
 	}
 
+	clicked() {
+		console.log("clicked")
+	}
+
 	render() {
 		return (
 			<div className="parent">
 				<Header />
+				<Link to="/add-listing">
+					<button className="add-button">
+						<IoMdAdd />
+					</button>
+				</Link>
 				<div className="page">
 					<div className="filters">
 						<select className="form-control" name="" id="" onChange={this.handleChange("f1")}>
