@@ -42,7 +42,6 @@ h5 {
 }
 
 .grid-container {
-  width: 85%;
   display: grid;
   grid-gap: 25px;
   grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
@@ -100,14 +99,17 @@ h1, h3 {
 }
 
 .add-button{
+	position:fixed;
+	bottom:40px;
+	right:40px;
 	width: 60px;
 	height: 60px;
 	border-radius: 60px;
 	padding: 0px;
 	background-color: #eb8e6d;
-	border-style: solid;
-	border-width: 5px;
-	border-color: #FFF;
+	box-shadow: 2px 2px 3px #999;
+	z-index: 101;
+
 }
 
 .add-button:hover{

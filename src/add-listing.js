@@ -100,7 +100,7 @@ class AddListing extends React.Component {
 					<Form onSubmit={this.addListing}>
 						<p className="form-title">Fill out the form to add your vehicle.</p>
 						<Form.Group className="formgroup">
-							<Col className="field">
+							<Col className="field-1">
 								<Row>
 									<Form.Label className="field-labels">Vehicle Name    <AiOutlineMail /></Form.Label>
 								</Row>
@@ -156,7 +156,7 @@ class AddListing extends React.Component {
 									type="description"
 									name="description"
 									onChange={this.handleChange}
-									className="input-fields"
+									className="more-information"
 									required
 								/>
 							</Col>
@@ -164,39 +164,51 @@ class AddListing extends React.Component {
 								<Row>
 									<Form.Label className="field-labels">Available Dates    <AiOutlineMail /></Form.Label>
 								</Row>
-								<Form.Control
-									type="startDate"
-									name="startDate"
-									onChange={this.handleChange}
-									className="input-fields"
-									required
-								/>
-								<Form.Control
-									type="endDate"
-									name="endDate"
-									onChange={this.handleChange}
-									className="input-fields"
-									required
-								/>
+								<Row>
+									<Form.Label className="field-sub-label1">Start Date</Form.Label>
+									<Form.Label className="field-sub-label2">End Date</Form.Label>
+								</Row>
+								<Row>
+									<Form.Control
+										type="startDate"
+										name="startDate"
+										onChange={this.handleChange}
+										className="input-sub-field1"
+										required
+									/>
+									<Form.Control
+										type="endDate"
+										name="endDate"
+										onChange={this.handleChange}
+										className="input-sub-field2"
+										required
+									/>
+								</Row>
 							</Col>
 							<Col className="field">
 								<Row>
 									<Form.Label className="field-labels">Location    <AiOutlineMail /></Form.Label>
 								</Row>
-								<Form.Control
-									type="city"
-									name="city"
-									onChange={this.handleChange}
-									className="input-fields"
-									required
-								/>
-								<Form.Control
-									type="state"
-									name="state"
-									onChange={this.handleChange}
-									className="input-fields"
-									required
-								/>
+								<Row>
+									<Form.Label className="field-sub-label1">City</Form.Label>
+									<Form.Label className="field-sub-label3">State</Form.Label>
+								</Row>
+								<Row>
+									<Form.Control
+										type="city"
+										name="city"
+										onChange={this.handleChange}
+										className="input-sub-field1"
+										required
+									/>
+									<Form.Control
+										type="state"
+										name="state"
+										onChange={this.handleChange}
+										className="input-sub-field2"
+										required
+									/>
+								</Row>
 							</Col>
 							<Col className="field">
 								<Row>
@@ -206,7 +218,7 @@ class AddListing extends React.Component {
 									type="price"
 									name="price"
 									onChange={this.handleChange}
-									className="production-year"
+									className="small"
 									required
 								/>
 							</Col>
@@ -218,7 +230,7 @@ class AddListing extends React.Component {
 									type="age"
 									name="age"
 									onChange={this.handleChange}
-									className="production-year"
+									className="small"
 									required
 								/>
 							</Col>
