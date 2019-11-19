@@ -77,7 +77,7 @@ class Listings extends React.Component {
 				<div className="page">
 					<div className="filters">
 						<select className="form-control" name="" id="" onChange={this.handleChange("f1")}>
-							<option value="" selected=""></option>
+							<option value=""></option>
 							<option value="off roader">off roader</option>
 							<option value="RV">RV</option>
 							<option value="Boat">Boat</option>

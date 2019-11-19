@@ -2,7 +2,6 @@ import React from 'react';
 import './css/add-listings.css';
 import Footer from './components/footer.js';
 import Header from './components/header.js';
-import Dropdown from 'react-dropdown';
 import Form from 'react-bootstrap/Form';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from 'react-grid-system';
@@ -14,59 +13,124 @@ import { FiLock } from "react-icons/fi";
 
 
 const initialState = {
-	data: [],
-	fData: []
+	email: "",
+	vehiclename: "",
+	description: "",
+	owner: "",
+	numWheels: "",
+	location: "USA",
+	age: null,
+	price: "",
+	pickup: false,
+	rating: 5,
+	vehicletype: "",
+	startDate: "",
+	endDate: "",
+	city: "",
+	state: "",
 }
 
 class AddListing extends React.Component {
-	optType = ["", "ATV", "RV", "Boat"];
-
 	constructor(props) {
 		super(props);
+
+		//GET RID OF THIS ************************************
+
+		initialState.email = "isabel.glasbrenner@gmail.com";
 		this.state = initialState;
 	}
 
-	componentDidMount() {
-		fetch("http://18.224.3.21/user/showListing", {
+	addListing = async event => {
+		console.log("Add listing");
+		event.preventDefault();
+
+		if (this.state.email === "" ||
+			this.state.vehiclename === "" ||
+			this.state.description === "" ||
+			this.state.owner === "" ||
+			this.state.numWheels === "" ||
+			this.state.age === null ||
+			this.state.price === "" ||
+			this.state.rating === null ||
+			this.state.vehicletype === "" ||
+			this.state.startDate === "" ||
+			this.state.endDate === "" ||
+			this.state.city === "" ||
+			this.state.state === ""
+		)
+			alert("Enter all of the required data");
+		fetch("http://18.224.3.21/user/addListing", {
 			method: "post",
 			headers: {
 				"Content-Type": "application/json",
 				"Accept": "application/json"
-			}
+			},
+			body: JSON.stringify({
+				email: "isabel.glasbrenner@gmail.com",
+				vehiclename: this.state.vehiclename,
+				description: this.state.description,
+				owner: this.state.owner,
+				numWheels: this.state.numWheels,
+				age: this.state.age,
+				price: this.state.price,
+				rating: this.state.rating,
+				vehicletype: this.state.vehicletype,
+				availabledate: [this.state.startDate, this.state.endDate],
+				city: this.state.city,
+				state: this.state.state,
+			})
 		})
 			.then(res => res.json())
 			.then(data => {
-				console.log(data);
-				this.setState({ data: data });
-				this.setState({ fData: data });
-			})
+				console.log("Returned Data: " + data);
+			});
 	}
 
-	handleChange = val => (event) => {
-		if (val == 'f1') {
-			this.setState({ fData: this.filterData(this.state.data, event.target.value) })
-		} else if (val == 'f2') {
-
-		} else {
-
-		}
-	}
+	handleChange = async event => {
+		console.log("handle change called /n");
+		const { name, value } = event.target;
+		await this.setState({ [name]: value });
+	};
 
 	render() {
 		return (
 			<div className="parent">
 				<Header />
 				<Col>
-					<Form onSubmit={this.handleLogin}>
+					<Form onSubmit={this.addListing}>
 						<p className="form-title">Fill out the form to add your vehicle.</p>
 						<Form.Group className="formgroup">
 							<Col className="field">
 								<Row>
-									<Form.Label className="field-labels">Name    <AiOutlineMail /></Form.Label>
+									<Form.Label className="field-labels">Vehicle Name    <AiOutlineMail /></Form.Label>
 								</Row>
 								<Form.Control
-									type="title"
-									name="title"
+									type="vehiclename"
+									name="vehiclename"
+									onChange={this.handleChange}
+									className="input-fields"
+									required
+								/>
+							</Col>
+							<Col className="field">
+								<Row>
+									<Form.Label className="field-labels">Your Name    <AiOutlineMail /></Form.Label>
+								</Row>
+								<Form.Control
+									type="owner"
+									name="owner"
+									onChange={this.handleChange}
+									className="input-fields"
+									required
+								/>
+							</Col>
+							<Col className="field">
+								<Row>
+									<Form.Label className="field-labels">Number of Wheels    <AiOutlineMail /></Form.Label>
+								</Row>
+								<Form.Control
+									type="numWheels"
+									name="numWheels"
 									onChange={this.handleChange}
 									className="input-fields"
 									required
@@ -77,8 +141,8 @@ class AddListing extends React.Component {
 									<Form.Label className="field-labels">Type of Vehicle    <AiOutlineMail /></Form.Label>
 								</Row>
 								<Form.Control
-									type="email"
-									name="email"
+									type="vehicletype"
+									name="vehicletype"
 									onChange={this.handleChange}
 									className="input-fields"
 									required
@@ -89,8 +153,8 @@ class AddListing extends React.Component {
 									<Form.Label className="field-labels">More Information    <AiOutlineMail /></Form.Label>
 								</Row>
 								<Form.Control
-									type="email"
-									name="email"
+									type="description"
+									name="description"
 									onChange={this.handleChange}
 									className="input-fields"
 									required
@@ -101,15 +165,15 @@ class AddListing extends React.Component {
 									<Form.Label className="field-labels">Available Dates    <AiOutlineMail /></Form.Label>
 								</Row>
 								<Form.Control
-									type="email"
-									name="email"
+									type="startDate"
+									name="startDate"
 									onChange={this.handleChange}
 									className="input-fields"
 									required
 								/>
 								<Form.Control
-									type="email"
-									name="email"
+									type="endDate"
+									name="endDate"
 									onChange={this.handleChange}
 									className="input-fields"
 									required
@@ -120,10 +184,29 @@ class AddListing extends React.Component {
 									<Form.Label className="field-labels">Location    <AiOutlineMail /></Form.Label>
 								</Row>
 								<Form.Control
-									type="email"
-									name="email"
+									type="city"
+									name="city"
 									onChange={this.handleChange}
 									className="input-fields"
+									required
+								/>
+								<Form.Control
+									type="state"
+									name="state"
+									onChange={this.handleChange}
+									className="input-fields"
+									required
+								/>
+							</Col>
+							<Col className="field">
+								<Row>
+									<Form.Label className="field-labels">Price    <AiOutlineMail /></Form.Label>
+								</Row>
+								<Form.Control
+									type="price"
+									name="price"
+									onChange={this.handleChange}
+									className="production-year"
 									required
 								/>
 							</Col>
@@ -132,15 +215,15 @@ class AddListing extends React.Component {
 									<Form.Label className="field-labels">Production Year    <AiOutlineMail /></Form.Label>
 								</Row>
 								<Form.Control
-									type="email"
-									name="email"
+									type="age"
+									name="age"
 									onChange={this.handleChange}
 									className="production-year"
 									required
 								/>
 							</Col>
 							<Col className="field">
-								<Button className="form-submit" onClick={this.handleLogin}>
+								<Button className="form-submit" onClick={this.addListing}>
 									Submit
 							</Button>
 							</Col>
