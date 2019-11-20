@@ -5,16 +5,25 @@
   width: 100%;
 }
 
-ul {
+.container{
+	padding: 0px;
+	margin: 0px;
+}
+
+.header-link{
   float: right;
-  color: #52abd4;
+  color: #ffffff;
+  font-weight: 200;
+  text-decoration: none;
+  margin: 20px;
 }
 
-li {
-	font-weight: 200;
+.header-link:hover{
+	color: #eb8e6d;
 }
 
-.logo {
+.expiriRents-logo {
   margin-top: 15px;
   height: 40px;
+  float: left;
 }
