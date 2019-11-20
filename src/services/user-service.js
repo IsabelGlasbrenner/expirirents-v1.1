@@ -1,9 +1,18 @@
 import React from 'react';
 
-export class UserService {
+class UserService {
     constructor() {
+        if (UserService.instance) {
+            return UserService.instance;
+            
+        }
+
         this.myEmail = "";
         this.isLoggedIn = false;
+        
+        UserService.instance = this;
+        return this;
+
     }
     
     getLoggedIn() {

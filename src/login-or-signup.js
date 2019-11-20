@@ -24,12 +24,12 @@ const initialState = {
 };
 
  
-
 class LoginOrSignup extends React.Component {
 	constructor(props) {
 
 		super(props);
 		this.state = initialState;
+		this.service = new UserService();
 	}
 
 	handleChange = async event => {
@@ -60,7 +60,7 @@ class LoginOrSignup extends React.Component {
 				console.log(this.props);
 				this.props.history.push("/", { name: data });
 			})
-			.then(UserService.setLoggedIn(true));
+			.then(this.service.setLoggedIn(true));
 	}
 
 	handleRegister = async event => {
@@ -87,7 +87,7 @@ class LoginOrSignup extends React.Component {
 				.then(res => res.json())
 				.then(data => {
 					// Passes in email for population purposes
-					UserService.setEmail(data.email);
+					this.service.setEmail(data.email);
 					console.log("this is the data: " + data);
 					console.log(this.props);
 					this.props.history.push("/", { name: data });
@@ -96,7 +96,7 @@ class LoginOrSignup extends React.Component {
 		}
 
 		// Finally!
-		UserService.setLoggedIn(true);
+		this.service.setLoggedIn(true);
 	}
 
 	render() {

@@ -22,15 +22,15 @@ class ProfilePage extends React.Component {
   constructor(props) {
 		super(props);
     this.state = initialState;
+    this.service = new UserService();
   }
   
   componentDidMount() {
-    // DOIWE
-    var myEmail = service.getEmail()
+    var myEmail = this.service.getEmail();
     
     console.log(myEmail);
 
-    if (UserService.getLoggedIn()) {
+    if (this.service.getLoggedIn()) {
       fetch("http://18.224.3.21/user/profile", {
         method: "post",
         headers: {
