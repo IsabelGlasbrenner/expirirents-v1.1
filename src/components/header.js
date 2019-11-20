@@ -8,8 +8,8 @@ const Header = () => {
 		<header className="header">
 			<div className="container">
 				<Link to="/"><img src={logo} className="expiriRents-logo" alt="expiriRents" /></Link>
-				<Link to={{pathname: '/listings', state: {location: "", to: "", from: "", type: ""}}}><li>All Listings</li></Link>
 				<Link to="/login-or-signup" className="header-link">Login/Signup</Link>
+				<Link to={{pathname: '/listings', state: {location: "", to: undefined, from: undefined, type: ""}}} className="header-link">All Listings</Link>
 			</div>
 		</header>
 	);
