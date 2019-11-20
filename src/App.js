@@ -3,61 +3,129 @@ import mountains from "./images/mountains.jpg";
 import "./css/App.css";
 import Footer from "./components/footer.js";
 import Header from "./components/header.js";
-import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
-import adventure_text from "./images/adventure_text.png";
+import SelectUSState from 'react-select-us-states';
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
+import moment from 'moment';
 import Helmet from 'react-helmet';
-import DayPicker, { DateUtils } from 'react-day-picker';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
+import { formatDate, parseDate } from 'react-day-picker/moment';
 
 
 class App extends React.Component {
-
-  opt = ["Motorcycle", "Dirt Bike", "Mountain Bike", "ATV", "Boat"];
-  // state = {
-  //   stateDate: new Date(),
-  //   endDate: new Date()
-  // };
-
-  // handleChange = date => {
-  //   this.setState({
-  //     startDate: date
-  //   });
-  // };
-
-  static defaultProps = {
-    numberOfMonths: 2,
-  };
-
   constructor(props) {
     super(props);
-    this.handleDayClick = this.handleDayClick.bind(this);
-    this.handleResetClick = this.handleResetClick.bind(this);
-    this.state = this.getInitialState();
-  }
-
-  getInitialState() {
-    return {
+	this.handleLocChange = this.handleLocChange.bind(this);
+    this.handleFromChange = this.handleFromChange.bind(this);
+	this.handleToChange = this.handleToChange.bind(this);
+    this.state = {
       from: undefined,
-      to: undefined,
+	  to: undefined,
+	  type: "",
+	  location: ""
     };
   }
 
-  handleDayClick(day) {
-    const range = DateUtils.addDayToRange(day, this.state);
-    this.setState(range);
-  }
+	showFromMonth() {
+		const { from, to } = this.state;
+		if (!from) {
+		return;
+		}
+		if (moment(to).diff(moment(from), 'months') < 2) {
+		this.to.getDayPicker().showMonth(from);
+		}
+	}
+  
+  	handleLocChange(loc) {
+	  loc = this.abbrState(loc);
+	  this.setState({location: loc});
+	}
+	
+	handleTypeChange = val => (event) => {
+		this.setState({type: event.target.value});
+	}
 
-  handleResetClick() {
-    this.setState(this.getInitialState());
-  }
+	handleFromChange(from) {
+		// Change the from date and focus the "to" input field
+		this.setState({ from });
+	}
+
+	handleToChange(to) {
+		this.setState({ to }, this.showFromMonth);
+	}
+
+	printState() {
+		console.log(this.state);
+	}
+
+	abbrState(input){
+    
+		var states = [
+			['Arizona', 'AZ'],
+			['Alabama', 'AL'],
+			['Alaska', 'AK'],
+			['Arkansas', 'AR'],
+			['California', 'CA'],
+			['Colorado', 'CO'],
+			['Connecticut', 'CT'],
+			['Delaware', 'DE'],
+			['Florida', 'FL'],
+			['Georgia', 'GA'],
+			['Hawaii', 'HI'],
+			['Idaho', 'ID'],
+			['Illinois', 'IL'],
+			['Indiana', 'IN'],
+			['Iowa', 'IA'],
+			['Kansas', 'KS'],
+			['Kentucky', 'KY'],
+			['Louisiana', 'LA'],
+			['Maine', 'ME'],
+			['Maryland', 'MD'],
+			['Massachusetts', 'MA'],
+			['Michigan', 'MI'],
+			['Minnesota', 'MN'],
+			['Mississippi', 'MS'],
+			['Missouri', 'MO'],
+			['Montana', 'MT'],
+			['Nebraska', 'NE'],
+			['Nevada', 'NV'],
+			['New Hampshire', 'NH'],
+			['New Jersey', 'NJ'],
+			['New Mexico', 'NM'],
+			['New York', 'NY'],
+			['North Carolina', 'NC'],
+			['North Dakota', 'ND'],
+			['Ohio', 'OH'],
+			['Oklahoma', 'OK'],
+			['Oregon', 'OR'],
+			['Pennsylvania', 'PA'],
+			['Rhode Island', 'RI'],
+			['South Carolina', 'SC'],
+			['South Dakota', 'SD'],
+			['Tennessee', 'TN'],
+			['Texas', 'TX'],
+			['Utah', 'UT'],
+			['Vermont', 'VT'],
+			['Virginia', 'VA'],
+			['Washington', 'WA'],
+			['West Virginia', 'WV'],
+			['Wisconsin', 'WI'],
+			['Wyoming', 'WY'],
+		];
+	
+		for(var i = 0; i < states.length; i++){
+			if(states[i][1] == input){
+				return(states[i][0]);
+			}
+		}    
+	}
 
   render() {
+	{this.printState()}
     const { from, to} = this.state;
     const modifiers = {start: from, end: to};
     return (
@@ -66,70 +134,84 @@ class App extends React.Component {
         <header className="App-header">
           <img src={mountains} className="Mountains" alt="Mountains" />
           <h2 className="heading">
-            Check out the random tools for rent in your area...
+            Check out the recreational items for rent in your area...
           </h2>
           <div className="searchBox">
-            <label className="title">Location</label>
-            <input type="text" className="input" />
+		  	<SelectUSState className="state-dropdown" onChange={this.handleLocChange}/>
+			<select className="form-control" onChange={this.handleTypeChange("type")}>
+				<option value="">Type...</option>
+				<option value="off roader">off roader</option>
+				<option value="RV">RV</option>
+				<option value="Boat">Boat</option>
+			</select>
 
-            <Dropdown options={this.opt} className="filters" />
-            <p>
-              {!from && !to && 'Please select the first day.'}
-              {from && !to && 'Please select the last day.'}
-              {from &&
-                to &&
-                `Selected from ${from.toLocaleDateString()} to
-                ${to.toLocaleDateString()}`}{' '}
-              {from && to && (
-                <button className="link" onClick={this.handleResetClick}>
-                  Reset
-            </button>
-              )}
-            </p>
-            <DayPicker
-              className="Selectable"
-              numberOfMonths={this.props.numberOfMonths}
-              selectedDays={[from, { from, to }]}
-              modifiers={modifiers}
-              onDayClick={this.handleDayClick}
-            />
-            <Helmet>
-              <style>{`
-  .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
-    background-color: #f0f8ff !important;
-    color: #4a90e2;
-  }
-  .Selectable .DayPicker-Day {
-    border-radius: 0 !important;
-  }
-  .Selectable .DayPicker-Day--start {
-    border-top-left-radius: 50% !important;
-    border-bottom-left-radius: 50% !important;
-  }
-  .Selectable .DayPicker-Day--end {
-    border-top-right-radius: 50% !important;
-    border-bottom-right-radius: 50% !important;
-  }
-`}</style>
-            </Helmet>
-            {/* <label className="title">
-              From:
-              </label>
-            <DatePicker
-              selected={this.state.startDate}
-              onSelect={this.handleSelect}
-              onChange={this.handleChange}
-            />
-            <label className="title">
-              To:
-              </label>
-            <DatePicker
-              selected={this.state.endDate}
-              onSelect={this.handleSelect}
-              onChange={this.handleChange}
-            /> */}
-
-            <input type="submit" value="Search" />
+			<div className="InputFromTo">
+				<DayPickerInput
+					value={from}
+					placeholder="From"
+					format="LL"
+					formatDate={formatDate}
+					parseDate={parseDate}
+					dayPickerProps={{
+						selectedDays: [from, { from, to }],
+						disabledDays: { after: to },
+						toMonth: to,
+						modifiers,
+						numberOfMonths: 2,
+						onDayClick: () => this.to.getInput().focus(),
+					}}
+					onDayChange={this.handleFromChange}
+				/>
+				<span className="InputFromTo-to">
+				<DayPickerInput
+					ref={el => (this.to = el)}
+					value={to}
+					placeholder="To"
+					format="LL"
+					formatDate={formatDate}
+					parseDate={parseDate}
+					dayPickerProps={{
+					selectedDays: [from, { from, to }],
+					disabledDays: { before: from },
+					modifiers,
+					month: from,
+					fromMonth: from,
+					numberOfMonths: 2,
+					}}
+					onDayChange={this.handleToChange}
+				/>
+				</span>
+				<Helmet>
+				<style>{`
+					.InputFromTo {
+						color:black;
+					}
+					.InputFromTo .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+						background-color: #f0f8ff !important;
+						color: #4a90e2;
+					}
+					.InputFromTo .DayPicker-Day {
+						border-radius: 0 !important;
+					}
+					.InputFromTo .DayPicker-Day--start {
+						border-top-left-radius: 50% !important;
+						border-bottom-left-radius: 50% !important;
+					}
+					.InputFromTo .DayPicker-Day--end {
+						border-top-right-radius: 50% !important;
+						border-bottom-right-radius: 50% !important;
+					}
+					.InputFromTo .DayPickerInput-Overlay {
+						width: 550px;
+					}
+					.InputFromTo-to .DayPickerInput-Overlay {
+						margin-left: 0px;
+						color:black;
+					}
+					`}</style>
+				</Helmet>
+			</div>
+            <Link to={{pathname: '/listings', state: {location: this.state.location, to: this.state.to, from: this.state.from, type: this.state.type}}}><input type="submit" value="Search" /></Link>
           </div>
         </header>
         <Footer />
