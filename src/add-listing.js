@@ -9,13 +9,11 @@ import Button from 'react-bootstrap/Button';
 import { FaTools, FaFileInvoiceDollar, FaMapPin, FaTruckMonster, FaCarSide, FaInfo, FaRegCalendarPlus } from "react-icons/fa";
 import { IoMdPerson } from "react-icons/io";
 import { GiCarWheel } from "react-icons/gi";
-
-
-
+import { withRouter } from 'react-router-dom';
 
 
 const initialState = {
-	email: "",
+	email: "isabel.glasbrenner@gmail.com",
 	vehiclename: "",
 	description: "",
 	owner: "",
@@ -38,12 +36,12 @@ class AddListing extends React.Component {
 
 		//GET RID OF THIS ************************************
 
-		initialState.email = "isabel.glasbrenner@gmail.com";
+		//initialState.email = "isabel.glasbrenner@gmail.com";
 		this.state = initialState;
 	}
 
 	addListing = async event => {
-		console.log("Add listing");
+		console.log("Add listing: ---->" + this.state.description + "-->" + this.state.startDate);
 		event.preventDefault();
 
 		if (this.state.email === "" ||
@@ -61,31 +59,35 @@ class AddListing extends React.Component {
 			this.state.state === ""
 		)
 			alert("Enter all of the required data");
-		fetch("http://18.224.3.21/user/addListing", {
-			method: "post",
-			headers: {
-				"Content-Type": "application/json",
-				"Accept": "application/json"
-			},
-			body: JSON.stringify({
-				email: "isabel.glasbrenner@gmail.com",
-				vehiclename: this.state.vehiclename,
-				description: this.state.description,
-				owner: this.state.owner,
-				numWheels: this.state.numWheels,
-				age: this.state.age,
-				price: this.state.price,
-				rating: this.state.rating,
-				vehicletype: this.state.vehicletype,
-				availabledate: [this.state.startDate, this.state.endDate],
-				city: this.state.city,
-				state: this.state.state,
+		else {
+			fetch("http://18.224.3.21/user/addListing", {
+				method: "post",
+				headers: {
+					"Content-Type": "application/json",
+					"Accept": "application/json"
+				},
+				body: JSON.stringify({
+					email: "isabel.glasbrenner@gmail.com",
+					vehiclename: this.state.vehiclename,
+					description: this.state.description,
+					owner: this.state.owner,
+					numWheels: this.state.numWheels,
+					age: this.state.age,
+					price: this.state.price,
+					rating: this.state.rating,
+					pickup: this.state.pickup,
+					vehicletype: this.state.vehicletype,
+					availabledate: [this.state.startDate, this.state.endDate],
+					city: this.state.city,
+					state: this.state.state,
+				})
 			})
-		})
-			.then(res => res.json())
-			.then(data => {
-				console.log("Returned Data: " + data);
-			});
+				.then(res => res.json())
+				.then(data => {
+					console.log("Returned Data: " + data.description);
+				})
+				.catch(err => console.log(err));
+		}
 	}
 
 	handleChange = async event => {
@@ -250,4 +252,4 @@ class AddListing extends React.Component {
 	}
 }
 
-export default AddListing;
+export default withRouter(AddListing);
