@@ -198,13 +198,6 @@ class Listings extends React.Component {
 				<Header />
 				<div className="page">
 					<div className="filters">
-						<SelectUSState className="state-dropdown" onChange={this.handleLocChange}/>
-						<select className="form-control" onChange={this.handleTypeChange("type")}>
-							<option value="">Type...</option>
-							<option value="off roader">off roader</option>
-							<option value="RV">RV</option>
-							<option value="Boat">Boat</option>
-						</select>
 
 						<div className="InputFromTo">
 							<DayPickerInput
@@ -264,6 +257,7 @@ class Listings extends React.Component {
 								}
 								.InputFromTo .DayPickerInput-Overlay {
 									width: 550px;
+									z-index:2;
 								}
 								.InputFromTo-to .DayPickerInput-Overlay {
 									margin-left: 0px;
@@ -271,6 +265,13 @@ class Listings extends React.Component {
 								}
 								`}</style>
 							</Helmet>
+							<SelectUSState className="state-dropdown" onChange={this.handleLocChange}/>
+							<select className="form-control" onChange={this.handleTypeChange("type")}>
+								<option value="">Type...</option>
+								<option value="off roader">off roader</option>
+								<option value="RV">RV</option>
+								<option value="Boat">Boat</option>
+							</select>
 							<button onClick={this.handleSearch}>Search</button>
 							<button onClick={this.handleReset}>Reset</button>
 						</div>
