@@ -13,41 +13,53 @@ import adventure_text from "./images/adventure_text.png";
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import UserService from "./services/user-service"
+import { withRouter } from "react-router-dom";
 
 const initialState = {
-  profile: {}
+  email: "",
 }
 
 class ProfilePage extends React.Component {
   constructor(props) {
 		super(props);
     this.state = initialState;
-    this.service = new UserService();
+    this.name = props.history.location.state.name;
+    this.email = props.history.location.state.email;
+
+    this.state.email = this.email;
+    console.log("----->" + this.name);
   }
   
   componentDidMount() {
-    var myEmail = this.service.getEmail();
-    
-    console.log(myEmail);
-
-    if (this.service.getLoggedIn()) {
       fetch("http://18.224.3.21/user/profile", {
         method: "post",
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
-        body: JSON.stringify({email: myEmail})
+        body: JSON.stringify({email: this.state.email})
   
       })
       .then(res => res.json())
       .then(data => {
-
         console.log(data);
         this.setState({profile: data});
+        data.listings.id.map( (dataID) => {
+          console.log(dataID+"--->ID");
+          fetch("http://18.224.3.21/user/getListing", {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            body: JSON.stringify({listingID: dataID})  
+          })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data.description+"Another");
+            })
+        });
       })
-
-    }
 	}
 
   render() {
@@ -56,11 +68,10 @@ class ProfilePage extends React.Component {
         <Header />
 
         <Row className="info">
-        <h1><b>{this.state.profile.firstName}</b></h1>
-
+        <h2><b> Welcome, {this.name}!</b></h2>
 			  </Row>
         <h2>
-          (Name), (email)
+          ?
         </h2>
         <Tabs>
           <TabList>
@@ -74,6 +85,7 @@ class ProfilePage extends React.Component {
             <p>
               <b>Profile</b> (<i>This page is still in progress.</i>) Once complete, this page will show a list of profile information,
               including name, location, email, phone number, and occupation (optional).
+              Your registered email: {this.email}
             </p>
           </TabPanel>
           <TabPanel>
@@ -92,13 +104,13 @@ class ProfilePage extends React.Component {
           <TabPanel>
             <p>
               <b>Your Listings</b> (<i>This page is still in progress.</i>) Should show a list of listings that this account has created. 
-              Past listings included as well (?)
+              Past listings included as well (?)                  
+
             </p>
           </TabPanel>
         </Tabs>
         <p>
 
-          
         </p>
         <Footer />
       </div>
@@ -106,4 +118,4 @@ class ProfilePage extends React.Component {
   }
 }
 
-export default ProfilePage;
+export default withRouter(ProfilePage);
