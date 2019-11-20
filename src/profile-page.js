@@ -85,7 +85,9 @@ class ProfilePage extends React.Component {
             <p>
               <b>Profile</b> (<i>This page is still in progress.</i>) Once complete, this page will show a list of profile information,
               including name, location, email, phone number, and occupation (optional).
-              Your registered email: {this.email}
+              <div>
+                Your registered email: {this.email}
+              </div>
             </p>
           </TabPanel>
           <TabPanel>
