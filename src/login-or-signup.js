@@ -23,6 +23,8 @@ const initialState = {
 	password: ""
 };
 
+ 
+
 class LoginOrSignup extends React.Component {
 	constructor(props) {
 
@@ -70,6 +72,7 @@ class LoginOrSignup extends React.Component {
 			fetch("http://18.224.3.21/user/register", {
 				method: "post",
 				headers: {
+
 					"Content-Type": "application/json",
 					"Accept": "application/json"
 				},
@@ -83,6 +86,8 @@ class LoginOrSignup extends React.Component {
 			})
 				.then(res => res.json())
 				.then(data => {
+					// Passes in email for population purposes
+					UserService.setEmail(data.email);
 					console.log("this is the data: " + data);
 					console.log(this.props);
 					this.props.history.push("/", { name: data });

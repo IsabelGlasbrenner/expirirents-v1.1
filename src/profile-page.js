@@ -12,35 +12,42 @@ import mountains from "./images/mountains.jpg";
 import adventure_text from "./images/adventure_text.png";
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import UserService from "./services/user-service"
 
 const initialState = {
-	profile: {}
+  profile: {}
 }
 
 class ProfilePage extends React.Component {
   constructor(props) {
 		super(props);
-		this.state = initialState;
+    this.state = initialState;
   }
   
   componentDidMount() {
-    const { email } = this.props.location.state;
-    console.log(email);
+    // DOIWE
+    var myEmail = service.getEmail()
     
-		fetch("http://18.224.3.21/user/profile", {
-			method: "post",
-			headers: {
-				"Content-Type": "application/json",
-				"Accept": "application/json"
-      },
-      body: JSON.stringify({email})
+    console.log(myEmail);
 
-		})
-		.then(res => res.json())
-		.then(data => {
-			console.log(data);
-			this.setState({profile: data});
-		})
+    if (UserService.getLoggedIn()) {
+      fetch("http://18.224.3.21/user/profile", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({email: myEmail})
+  
+      })
+      .then(res => res.json())
+      .then(data => {
+
+        console.log(data);
+        this.setState({profile: data});
+      })
+
+    }
 	}
 
   render() {

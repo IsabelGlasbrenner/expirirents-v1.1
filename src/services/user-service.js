@@ -1,25 +1,26 @@
 import React from 'react';
 
-const isLoggedIn = false;
-
-const initialState = {
-	firstName: "",
-	lastName: "",
-	phoneNumber: "",
-	email: "",
-	password: ""
-};
-
-const UserService = {
+export class UserService {
+    constructor() {
+        this.myEmail = "";
+        this.isLoggedIn = false;
+    }
     
+    getLoggedIn() {
+        return this.isLoggedIn;
+    }
 
-    getLoggedIn: function() {
-        return isLoggedIn;
-    },
+    setLoggedIn(i) {
+        this.isLoggedIn = i;
+        console.log("isLoggedIn: " + this.isLoggedIn)
+    }
 
-    setLoggedIn: function(isLoggedIn) {
-        this.isLoggedIn = isLoggedIn;
-        console.log("isLoggedIn: " + isLoggedIn)
+    getEmail() {
+        return this.myEmail;
+    }
+
+    setEmail(e) {
+        this.myEmail = e;
     }
 };
 
