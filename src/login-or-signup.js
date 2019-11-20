@@ -51,9 +51,9 @@ class LoginOrSignup extends React.Component {
 		})
 			.then(res => res.json())
 			.then(data => {
-				console.log("Login name: " + data);
+				console.log("Login email: " + data.email);
 				console.log(this.props);
-				this.props.history.push("/", { name: data });
+				this.props.history.push("/profile-page", { name: data.firstname, email: data.email });
 			});
 	}
 
