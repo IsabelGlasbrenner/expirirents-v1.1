@@ -3,7 +3,6 @@ import mountains from "./images/mountains.jpg";
 import "./css/App.css";
 import Footer from "./components/footer.js";
 import Header from "./components/header.js";
-import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
@@ -19,51 +18,112 @@ import { formatDate, parseDate } from 'react-day-picker/moment';
 
 
 class App extends React.Component {
-  opt = ["Motorcycle", "Dirt Bike", "Mountain Bike", "ATV", "Boat"];
-
   constructor(props) {
     super(props);
+	this.handleLocChange = this.handleLocChange.bind(this);
     this.handleFromChange = this.handleFromChange.bind(this);
-    this.handleToChange = this.handleToChange.bind(this);
+	this.handleToChange = this.handleToChange.bind(this);
     this.state = {
-      from: "",
-	  to: "",
+      from: undefined,
+	  to: undefined,
 	  type: "",
 	  location: ""
     };
   }
 
-  showFromMonth() {
-    const { from, to } = this.state;
-    if (!from) {
-      return;
-    }
-    if (moment(to).diff(moment(from), 'months') < 2) {
-      this.to.getDayPicker().showMonth(from);
-    }
-  }
+	showFromMonth() {
+		const { from, to } = this.state;
+		if (!from) {
+		return;
+		}
+		if (moment(to).diff(moment(from), 'months') < 2) {
+		this.to.getDayPicker().showMonth(from);
+		}
+	}
   
-  handleLocChange = val => (event) => {
-	  this.setState({location: event.target.value});
+  	handleLocChange(loc) {
+	  loc = this.abbrState(loc);
+	  this.setState({location: loc});
 	}
 	
 	handleTypeChange = val => (event) => {
 		this.setState({type: event.target.value});
 	}
 
-  handleFromChange(from) {
-    // Change the from date and focus the "to" input field
-	this.setState({ from });
-  }
+	handleFromChange(from) {
+		// Change the from date and focus the "to" input field
+		this.setState({ from });
+	}
 
-  handleToChange(to) {
-	this.setState({ to }, this.showFromMonth);
-  }
+	handleToChange(to) {
+		this.setState({ to }, this.showFromMonth);
+	}
 
-  printState() {
-	  console.log(this.state);
-  }
+	printState() {
+		console.log(this.state);
+	}
 
+	abbrState(input){
+    
+		var states = [
+			['Arizona', 'AZ'],
+			['Alabama', 'AL'],
+			['Alaska', 'AK'],
+			['Arkansas', 'AR'],
+			['California', 'CA'],
+			['Colorado', 'CO'],
+			['Connecticut', 'CT'],
+			['Delaware', 'DE'],
+			['Florida', 'FL'],
+			['Georgia', 'GA'],
+			['Hawaii', 'HI'],
+			['Idaho', 'ID'],
+			['Illinois', 'IL'],
+			['Indiana', 'IN'],
+			['Iowa', 'IA'],
+			['Kansas', 'KS'],
+			['Kentucky', 'KY'],
+			['Louisiana', 'LA'],
+			['Maine', 'ME'],
+			['Maryland', 'MD'],
+			['Massachusetts', 'MA'],
+			['Michigan', 'MI'],
+			['Minnesota', 'MN'],
+			['Mississippi', 'MS'],
+			['Missouri', 'MO'],
+			['Montana', 'MT'],
+			['Nebraska', 'NE'],
+			['Nevada', 'NV'],
+			['New Hampshire', 'NH'],
+			['New Jersey', 'NJ'],
+			['New Mexico', 'NM'],
+			['New York', 'NY'],
+			['North Carolina', 'NC'],
+			['North Dakota', 'ND'],
+			['Ohio', 'OH'],
+			['Oklahoma', 'OK'],
+			['Oregon', 'OR'],
+			['Pennsylvania', 'PA'],
+			['Rhode Island', 'RI'],
+			['South Carolina', 'SC'],
+			['South Dakota', 'SD'],
+			['Tennessee', 'TN'],
+			['Texas', 'TX'],
+			['Utah', 'UT'],
+			['Vermont', 'VT'],
+			['Virginia', 'VA'],
+			['Washington', 'WA'],
+			['West Virginia', 'WV'],
+			['Wisconsin', 'WI'],
+			['Wyoming', 'WY'],
+		];
+	
+		for(var i = 0; i < states.length; i++){
+			if(states[i][1] == input){
+				return(states[i][0]);
+			}
+		}    
+	}
 
   render() {
 	{this.printState()}
@@ -78,7 +138,7 @@ class App extends React.Component {
             Check out the recreational items for rent in your area...
           </h2>
           <div className="searchBox">
-		  	<SelectUSState className="state-dropdown" onChange={this.handleLocChange("loc")}/>
+		  	<SelectUSState className="state-dropdown" onChange={this.handleLocChange}/>
 			<select className="form-control" onChange={this.handleTypeChange("type")}>
 				<option value="">Type...</option>
 				<option value="off roader">off roader</option>
