@@ -1,26 +1,43 @@
 footer {
+  padding-top: 50px;
   position: relative;
   left: 0;
   bottom: 0;
   width: 100%;
-  margin: auto;
-  background-color: rgb(27, 27, 27);
+  background-color: #012e60;
   color: white;
-  text-align: center;
+  padding-bottom: 20px;
 }
 
-ul li{
-  display: inline;
-  text-align: center;
-  padding: 10px;
+.container{
+	text-align: center;
+	margin: 20px;
 }
 
-a {
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
+.link{
+	margin: 10px;
+	color: #ffffff;
+	text-decoration: none;
 }
 
-.social-icons {
-  padding: 10px 10px;
+.link:hover{
+	margin: 10px;
+	color: #eb8e6d;
+	text-decoration: none;
+}
+
+.social-icons{
+	margin-top: 20px;
+	height: 35px;
+	width: 35px;
+	margin: 10px;
+}
+
+p{
+	font-size: 13px;
+	margin: 20px;
+}
+
+.logo{
+	height: 60px;
 }
