@@ -8,6 +8,7 @@ import SingleListing from "./single-listing";
 import LoginOrSignup from "./login-or-signup";
 import ProfilePage from "./profile-page";
 import AddListing from "./add-listing";
+import PineLeaves from "./images/pineLeaves.jpg";
 
 import * as serviceWorker from "./serviceWorker";
 
