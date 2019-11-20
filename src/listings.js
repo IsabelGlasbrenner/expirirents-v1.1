@@ -215,7 +215,8 @@ class Listings extends React.Component {
 									onDayClick: () => this.to.getInput().focus(),
 								}}
 								onDayChange={this.handleFromChange}
-							/>
+							/>{' '}
+        					—{' '}
 							<span className="InputFromTo-to">
 							<DayPickerInput
 								ref={el => (this.to = el)}
@@ -239,6 +240,10 @@ class Listings extends React.Component {
 							<style>{`
 								.InputFromTo {
 									color:black;
+									height:50px;
+								}
+								.InputFromTo .DayPickerInput{
+									height: 50px;
 								}
 								.InputFromTo .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
 									background-color: #f0f8ff !important;

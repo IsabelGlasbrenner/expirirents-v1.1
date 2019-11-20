@@ -6,7 +6,6 @@ import Header from "./components/header.js";
 import 'react-dropdown/style.css';
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
-import adventure_text from "./images/adventure_text.png";
 import SelectUSState from 'react-select-us-states';
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";

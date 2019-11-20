@@ -107,7 +107,3 @@ h1, h3 {
 	font-weight: lighter;
 	color: rgb(65, 65, 65);
 }
-
-.form-control-selected {
-	background-color: green;
-}
