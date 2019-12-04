@@ -7,136 +7,117 @@ import "./css/profile-page.css";
 import Footer from "./components/footer.js";
 import Header from "./components/header.js";
 import { Container, Row, Col } from 'react-grid-system';
-import Slideshow from './components/slideshow.js';
-import { Link } from "react-router-dom";
+
+import mountains from "./images/mountains.jpg";
+import adventure_text from "./images/adventure_text.png";
+
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import UserService from "./services/user-service"
+import { withRouter } from "react-router-dom";
 
 const initialState = {
-	email: "",
-	listings: []
+  email: "",
 }
 
-
 class ProfilePage extends React.Component {
-
-
-	constructor(props) {
+  constructor(props) {
 		super(props);
-		this.state = initialState;
-		if (props.history.location.state) {
-			this.name = props.history.location.state.name;
-			this.email = props.history.location.state.email;
-		}
+    this.state = initialState;
+    this.name = props.history.location.state.name;
+    this.email = props.history.location.state.email;
 
-		this.state.email = this.email;
-		console.log("----->" + this.name);
+    this.state.email = this.email;
+    console.log("----->" + this.name);
+  }
+  
+  componentDidMount() {
+      fetch("http://18.224.3.21/user/profile", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({email: this.state.email})
+  
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        this.setState({profile: data});
+        data.listings.id.map( (dataID) => {
+          console.log(dataID+"--->ID");
+          fetch("http://18.224.3.21/user/getListing", {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            body: JSON.stringify({listingID: dataID})  
+          })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data.description+"Another");
+            })
+        });
+      })
 	}
 
-	componentDidMount() {
-		fetch("http://18.224.3.21/user/profile", {
-			method: "post",
-			headers: {
-				"Content-Type": "application/json",
-				"Accept": "application/json"
-			},
-			body: JSON.stringify({ email: this.state.email })
+  render() {
+    return (
+      <div className="ProfilePage">
+        <Header />
 
-		})
-			.then(res => res.json())
-			.then(data => {
-				console.log(data);
-				this.setState({ profile: data });
-				if (data.listings) {
-					data.listings.id.map((dataID) => {
-						console.log(dataID + "--->ID");
-						fetch("http://18.224.3.21/user/getListing", {
-							method: "post",
-							headers: {
-								"Content-Type": "application/json",
-								"Accept": "application/json"
-							},
-							body: JSON.stringify({ listingID: dataID })
-						})
-							.then(res => res.json())
-							.then(data => {
-								if (data.description) {
-									console.log(data);
-									this.state.listings.push(data);
-									this.setState(this.state);
-								}
-							})
-					});
-				}
-			})
-	}
+        <Row className="info">
+        <h2><b> Welcome, {this.name}!</b></h2>
+			  </Row>
+        <h2>
+          ?
+        </h2>
+        <Tabs>
+          <TabList>
+            <Tab>Profile</Tab>
+            <Tab>Update Password</Tab>
+            <Tab>Your Listings</Tab>
+            <Tab disabled>Eh?</Tab>
+          </TabList>
 
+          <TabPanel>
+            <p>
+              <b>Profile</b> (<i>This page is still in progress.</i>) Once complete, this page will show a list of profile information,
+              including name, location, email, phone number, and occupation (optional).
+              <div>
+                Your registered email: {this.email}
+              </div>
+            </p>
+          </TabPanel>
+          <TabPanel>
+            <p>
+              <b>Update Password</b> (<i>This page is still in progress.</i>) This page will provide functionality for updating password.
+            </p>
+            <p>
+              Fields will include: Enter old password, Enter new password, Confirm new password
+            </p>
+            <p>
+              <a href="https://www.youtube.com/watch?v=PLOPygVcaVE" target="_blank">
+                Code problem
+              </a>
+            </p>
+          </TabPanel>
+          <TabPanel>
+            <p>
+              <b>Your Listings</b> (<i>This page is still in progress.</i>) Should show a list of listings that this account has created. 
+              Past listings included as well (?)                  
 
-	render() {
-		return (
-			<div className="profile-page">
-				<Header />
-				<div className="page-col">
-					<h1 className="account-heading">Account</h1>
-					<h2 className="account-subheader1">Welcome, {this.name}!</h2>
-					<h3 className="account-subheader2">Here's the information we have saved for you.</h3>
-					<Tabs>
-						<div className="tabs">
-							<TabList>
-								<Tab>Profile</Tab>
-								<Tab>Your Listings</Tab>
-							</TabList>
-							<TabPanel>
-								<div className="tab-panel">
-									<h3 className="tab-header1">Profile</h3>
-									<div className="section">
-										<h4 className="section-title">Name</h4>
-										<p className="section-content">{this.name}</p>
-									</div>
-									<div className="section">
-										<h4 className="section-title">Email</h4>
-										<p className="section-content">{this.email}</p>
-									</div>
-								</div>
-							</TabPanel>
-							<TabPanel>
-								<div className="tab-panel">
-									<h3 className="tab-header2">Your Listings</h3>
-									<div className="grid-container"> {
-										this.state.listings.map((listing, i) => {
-											return (
-												<div key={i} className="card">
-													<Slideshow />
-													<Link to={{ pathname: '/single-listing', state: { listID: listing._id } }}>
-														<Container fluid style={{ lineHeight: '3px' }} className="container">
-															<Row justify="start">
-																<Col>
-																	<p id="type"><span>{listing.vehicleType}</span></p>
-																</Col>
-																<Col>
-																	<p id="location">{listing.location}</p>
-																</Col>
-															</Row>
-															<Row>
-																<Col>
-																	<h3>{listing.vehicleName}</h3>
-																	<h5>${listing.price}/day</h5>
-																</Col>
-															</Row>
-														</Container>
-													</Link>
-												</div>
-											);
+            </p>
+          </TabPanel>
+        </Tabs>
+        <p>
 
-										})
-									}</div>
-								</div>
-							</TabPanel>
-						</div>
-					</Tabs>
-				</div>
-				<Footer />
-			</div>
-		);
-	}
+        </p>
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export default withRouter(ProfilePage);

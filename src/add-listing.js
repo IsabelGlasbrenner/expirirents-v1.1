@@ -3,17 +3,17 @@ import './css/add-listings.css';
 import Footer from './components/footer.js';
 import Header from './components/header.js';
 import Form from 'react-bootstrap/Form';
-import { Row, Col } from 'react-grid-system';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Container, Row, Col } from 'react-grid-system';
+import { IoMdAdd } from "react-icons/io";
 import { AiOutlineMail } from "react-icons/ai";
 import Button from 'react-bootstrap/Button';
-import { FaTools, FaFileInvoiceDollar, FaMapPin, FaTruckMonster, FaCarSide, FaInfo, FaRegCalendarPlus } from "react-icons/fa";
-import { IoMdPerson } from "react-icons/io";
-import { GiCarWheel } from "react-icons/gi";
-import { withRouter } from 'react-router-dom';
+import { FiLock } from "react-icons/fi";
+
 
 
 const initialState = {
-	email: "isabel.glasbrenner@gmail.com",
+	email: "",
 	vehiclename: "",
 	description: "",
 	owner: "",
@@ -36,12 +36,12 @@ class AddListing extends React.Component {
 
 		//GET RID OF THIS ************************************
 
-		//initialState.email = "isabel.glasbrenner@gmail.com";
+		initialState.email = "isabel.glasbrenner@gmail.com";
 		this.state = initialState;
 	}
 
 	addListing = async event => {
-		console.log("Add listing: ---->" + this.state.description + "-->" + this.state.startDate);
+		console.log("Add listing");
 		event.preventDefault();
 
 		if (this.state.email === "" ||
@@ -59,35 +59,31 @@ class AddListing extends React.Component {
 			this.state.state === ""
 		)
 			alert("Enter all of the required data");
-		else {
-			fetch("http://18.224.3.21/user/addListing", {
-				method: "post",
-				headers: {
-					"Content-Type": "application/json",
-					"Accept": "application/json"
-				},
-				body: JSON.stringify({
-					email: "isabel.glasbrenner@gmail.com",
-					vehiclename: this.state.vehiclename,
-					description: this.state.description,
-					owner: this.state.owner,
-					numWheels: this.state.numWheels,
-					age: this.state.age,
-					price: this.state.price,
-					rating: this.state.rating,
-					pickup: this.state.pickup,
-					vehicletype: this.state.vehicletype,
-					availabledate: [this.state.startDate, this.state.endDate],
-					city: this.state.city,
-					state: this.state.state,
-				})
+		fetch("http://18.224.3.21/user/addListing", {
+			method: "post",
+			headers: {
+				"Content-Type": "application/json",
+				"Accept": "application/json"
+			},
+			body: JSON.stringify({
+				email: "isabel.glasbrenner@gmail.com",
+				vehiclename: this.state.vehiclename,
+				description: this.state.description,
+				owner: this.state.owner,
+				numWheels: this.state.numWheels,
+				age: this.state.age,
+				price: this.state.price,
+				rating: this.state.rating,
+				vehicletype: this.state.vehicletype,
+				availabledate: [this.state.startDate, this.state.endDate],
+				city: this.state.city,
+				state: this.state.state,
 			})
-				.then(res => res.json())
-				.then(data => {
-					console.log("Returned Data: " + data.description);
-				})
-				.catch(err => console.log(err));
-		}
+		})
+			.then(res => res.json())
+			.then(data => {
+				console.log("Returned Data: " + data);
+			});
 	}
 
 	handleChange = async event => {
@@ -106,7 +102,7 @@ class AddListing extends React.Component {
 						<Form.Group className="formgroup">
 							<Col className="field-1">
 								<Row>
-									<Form.Label className="field-labels">Vehicle Name    <FaTruckMonster /></Form.Label>
+									<Form.Label className="field-labels">Vehicle Name    <AiOutlineMail /></Form.Label>
 								</Row>
 								<Form.Control
 									type="vehiclename"
@@ -118,7 +114,7 @@ class AddListing extends React.Component {
 							</Col>
 							<Col className="field">
 								<Row>
-									<Form.Label className="field-labels">Your Name    <IoMdPerson /></Form.Label>
+									<Form.Label className="field-labels">Your Name    <AiOutlineMail /></Form.Label>
 								</Row>
 								<Form.Control
 									type="owner"
@@ -130,7 +126,7 @@ class AddListing extends React.Component {
 							</Col>
 							<Col className="field">
 								<Row>
-									<Form.Label className="field-labels">Number of Wheels    <GiCarWheel /></Form.Label>
+									<Form.Label className="field-labels">Number of Wheels    <AiOutlineMail /></Form.Label>
 								</Row>
 								<Form.Control
 									type="numWheels"
@@ -142,7 +138,7 @@ class AddListing extends React.Component {
 							</Col>
 							<Col className="field">
 								<Row>
-									<Form.Label className="field-labels">Type of Vehicle    <FaCarSide /></Form.Label>
+									<Form.Label className="field-labels">Type of Vehicle    <AiOutlineMail /></Form.Label>
 								</Row>
 								<Form.Control
 									type="vehicletype"
@@ -154,7 +150,7 @@ class AddListing extends React.Component {
 							</Col>
 							<Col className="field">
 								<Row>
-									<Form.Label className="field-labels">More Information    <FaInfo /></Form.Label>
+									<Form.Label className="field-labels">More Information    <AiOutlineMail /></Form.Label>
 								</Row>
 								<Form.Control
 									type="description"
@@ -166,7 +162,7 @@ class AddListing extends React.Component {
 							</Col>
 							<Col className="field">
 								<Row>
-									<Form.Label className="field-labels">Available Dates    <FaRegCalendarPlus /></Form.Label>
+									<Form.Label className="field-labels">Available Dates    <AiOutlineMail /></Form.Label>
 								</Row>
 								<Row>
 									<Form.Label className="field-sub-label1">Start Date</Form.Label>
@@ -191,7 +187,7 @@ class AddListing extends React.Component {
 							</Col>
 							<Col className="field">
 								<Row>
-									<Form.Label className="field-labels">Location    <FaMapPin /></Form.Label>
+									<Form.Label className="field-labels">Location    <AiOutlineMail /></Form.Label>
 								</Row>
 								<Row>
 									<Form.Label className="field-sub-label1">City</Form.Label>
@@ -216,7 +212,7 @@ class AddListing extends React.Component {
 							</Col>
 							<Col className="field">
 								<Row>
-									<Form.Label className="field-labels">Price    <FaFileInvoiceDollar /></Form.Label>
+									<Form.Label className="field-labels">Price    <AiOutlineMail /></Form.Label>
 								</Row>
 								<Form.Control
 									type="price"
@@ -228,7 +224,7 @@ class AddListing extends React.Component {
 							</Col>
 							<Col className="field">
 								<Row>
-									<Form.Label className="field-labels">Production Year    <FaTools /></Form.Label>
+									<Form.Label className="field-labels">Production Year    <AiOutlineMail /></Form.Label>
 								</Row>
 								<Form.Control
 									type="age"
@@ -252,4 +248,4 @@ class AddListing extends React.Component {
 	}
 }
 
-export default withRouter(AddListing);
+export default AddListing;
