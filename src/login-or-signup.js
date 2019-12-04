@@ -29,7 +29,6 @@ class LoginOrSignup extends React.Component {
 
 		super(props);
 		this.state = initialState;
-		//this.service = new UserService();
 		console.log("hello this is log");
 	}
 
@@ -62,8 +61,6 @@ class LoginOrSignup extends React.Component {
 				this.props.history.push("/profile-page", { name: data.firstname, 
 												email: data.email });
 			})
-
-			//.then(this.service.setLoggedIn(true));
 	}
 
 	handleRegister = async event => {
@@ -91,7 +88,6 @@ class LoginOrSignup extends React.Component {
 				.then(data => {
 					// Passes in email for population purposes
 
-					//this.service.setEmail(data.email);
 					localStorage.setItem('email', data.email);
 					console.log("this is the email stored in localstorage: ", + localStorage.getItem('email'));
 
@@ -101,9 +97,6 @@ class LoginOrSignup extends React.Component {
 				})
 				.catch(err => { console.log(err); })
 		}
-
-		// Finally!
-		//this.service.setLoggedIn(true);
 	}
 
 	render() {
