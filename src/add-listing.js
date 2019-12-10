@@ -240,7 +240,7 @@ class AddListing extends React.Component {
 								/>
 							</Col>
 							<Col className="field">
-								<Button className="form-submit" onClick={this.addListing}>
+								<Button id="button" className="form-submit" onClick={this.addListing}>
 									Submit
 							</Button>
 							</Col>

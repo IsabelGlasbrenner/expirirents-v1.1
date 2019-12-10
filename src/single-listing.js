@@ -4,10 +4,19 @@ import Slideshow from './components/slideshow.js';
 import Footer from './components/footer.js';
 import Header from './components/header.js';
 import { Container, Row, Col } from 'react-grid-system';
+import SimpleReactCalendar from 'simple-react-calendar'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const initialState = {
-	listing: {}
+	listing: {
+		availableDate: {
+			DateSpan: [{
+				startDate: undefined, 
+				endDate: undefined
+			}]
+		}
+	},
+	newEnd: undefined
 }
 
 class SingleListing extends React.Component {
@@ -31,6 +40,9 @@ class SingleListing extends React.Component {
 		.then(res => res.json())
 		.then(data => {
 			this.setState({listing: data});
+			var date = new Date(this.state.listing.availableDate.DateSpan[0].endDate);
+			date.setDate(date.getDate()+2);
+			this.setState({newEnd: date});
 		})
 	}
 
@@ -48,7 +60,8 @@ class SingleListing extends React.Component {
           </div>
           
           <div className="dates">
-            <button onClick={this.handleSubmit}>Book Now</button>
+		    <SimpleReactCalendar disabledIntervals={[{start: new Date(2015,0,1), end: this.state.listing.availableDate.DateSpan[0].startDate ? this.state.listing.availableDate.DateSpan[0].startDate : new Date(2015,0,1)}, {start: this.state.newEnd ? this.state.newEnd : new Date(2025,0,1), end: new Date (2025,0,1)}]}/>
+            <button className="book-btn" onClick={this.handleSubmit}>Book Now</button>
           </div>
         </Row>
 
@@ -63,7 +76,7 @@ class SingleListing extends React.Component {
 				</Col>
 				<Col className="col-fields">
 					<h3>Location</h3>
-					<p>{this.state.listing.location}</p>
+					<p>{this.state.listing.city}</p>
 				</Col>
 				<Col className="col-fields">
 					<h3>Price</h3>

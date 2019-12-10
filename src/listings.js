@@ -279,8 +279,8 @@ class Listings extends React.Component {
 								<option value="RV">RV</option>
 								<option value="Boat">Boat</option>
 							</select>
-							<button onClick={this.handleSearch}>Search</button>
-							<button onClick={this.handleReset}>Reset</button>
+							<button id="button" onClick={this.handleSearch}>Search</button>
+							<button id="button" onClick={this.handleReset}>Reset</button>
 						</div>
 					</div>
 
