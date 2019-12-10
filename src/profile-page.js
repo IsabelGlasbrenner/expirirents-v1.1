@@ -23,10 +23,16 @@ class ProfilePage extends React.Component {
   constructor(props) {
 		super(props);
     this.state = initialState;
+
     this.name = props.history.location.state.name;
     this.email = props.history.location.state.email;
+    this.phoneNumber = props.history.location.state.phone_number;
+    this.joinedDate = props.history.location.state.joined;
 
+    this.state.joinedDate = this.joinedDate;
+    this.state.phoneNumber = this.phoneNumber;
     this.state.email = this.email;
+    
     console.log("----->" + this.name);
   }
   
@@ -45,7 +51,7 @@ class ProfilePage extends React.Component {
         console.log(data);
         this.setState({profile: data});
         data.listings.id.map( (dataID) => {
-          console.log(dataID+"--->ID");
+          console.log(" ---> ID: " + dataID);
           fetch("http://18.224.3.21/user/getListing", {
             method: "post",
             headers: {
@@ -56,7 +62,7 @@ class ProfilePage extends React.Component {
           })
           .then(res => res.json())
           .then(data => {
-            console.log(data.description+"Another");
+            console.log("data returned: " + data.description);
             })
         });
       })
@@ -83,10 +89,15 @@ class ProfilePage extends React.Component {
 
           <TabPanel>
             <p>
-              <b>Profile</b> (<i>This page is still in progress.</i>) Once complete, this page will show a list of profile information,
-              including name, location, email, phone number, and occupation (optional).
+              <b>About You</b>
               <div>
-                Your registered email: {this.email}
+                Your phone number: {this.phoneNumber}
+              </div>
+              <div>
+                Your email: {this.email}
+              </div>
+              <div>
+                Date joined: {this.joinedDate}
               </div>
             </p>
           </TabPanel>

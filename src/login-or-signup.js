@@ -26,10 +26,8 @@ const initialState = {
  
 class LoginOrSignup extends React.Component {
 	constructor(props) {
-
 		super(props);
 		this.state = initialState;
-		//this.service = new UserService();
 		console.log("hello this is log");
 	}
 
@@ -62,8 +60,6 @@ class LoginOrSignup extends React.Component {
 				this.props.history.push("/profile-page", { name: data.firstname, 
 												email: data.email });
 			})
-
-			//.then(this.service.setLoggedIn(true));
 	}
 
 	handleRegister = async event => {
@@ -90,20 +86,20 @@ class LoginOrSignup extends React.Component {
 				.then(res => res.json())
 				.then(data => {
 					// Passes in email for population purposes
-
-					//this.service.setEmail(data.email);
-					localStorage.setItem('email', data.email);
-					console.log("this is the email stored in localstorage: ", + localStorage.getItem('email'));
+					//localStorage.setItem('email', data.email);
+					//localStorage.setItem('first_name', data.firstName);
+					//localStorage.setItem('last_name', data.lastName);
+					//localStorage.setItem('phone_number', data.phoneNumber);
+					//console.log("this is the email stored in localstorage: ", + localStorage.getItem('email'));
 
 					console.log("this is the data: " + data);
 					console.log(this.props);
 					this.props.history.push("/", { name: data });
+					
 				})
 				.catch(err => { console.log(err); })
 		}
 
-		// Finally!
-		//this.service.setLoggedIn(true);
 	}
 
 	render() {
