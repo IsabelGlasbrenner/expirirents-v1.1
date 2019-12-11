@@ -37,8 +37,8 @@ class CheckoutForm extends Component {
         return res.json();
     })
     .then(data => {
-         if(data === "success")
-         this.setState({complete: true});
+        if(data === "success")
+        this.setState({complete: true});
         console.log("Returned Data: ", data);
     })
     .catch(err => console.log(err));
