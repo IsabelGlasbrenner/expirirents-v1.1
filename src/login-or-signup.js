@@ -29,14 +29,42 @@ class LoginOrSignup extends React.Component {
   constructor(props) {
     super(props);
     this.state = initialState;
-    if (saveState.email) {
-      this.props.history.push("/profile-page");
+
+    if (props.history.location.state) {
+      this.name = props.history.location.state.name;
+      this.email = props.history.location.state.email;
     }
+
+    this.state.email = this.email;
+
+    if (this.email) {
+      saveState.email = this.email;
+      saveState.name = this.name;
+    }
+
     console.log("saved state email login-----> " + saveState.email);
+
+    if (saveState.email) {
+      if (saveState.email == "logout") {
+        this.props.history.push("/listings", {
+          name: saveState.name,
+          email: saveState.email
+        });
+        this.props.history.push("/profile", {
+          name: saveState.name,
+          email: saveState.email
+        });
+        this.props.history.push("/add-listing", {
+          name: saveState.name,
+          email: saveState.email
+        });
+      } else {
+        this.props.history.push("/profile-page");
+      }
+    }
   }
 
   handleChange = async event => {
-    console.log("handle change called /n");
     const { name, value } = event.target;
     await this.setState({ [name]: value });
   };
@@ -59,11 +87,12 @@ class LoginOrSignup extends React.Component {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
-        console.log("Login email: " + data.email);
-        console.log(this.props);
         saveState.email = data.email;
         this.props.history.push("/listings", {
+          name: data.firstname,
+          email: data.email
+        });
+        this.props.history.push("/header", {
           name: data.firstname,
           email: data.email
         });
@@ -75,16 +104,11 @@ class LoginOrSignup extends React.Component {
           name: data.firstname,
           email: data.email
         });
-        this.props.history.push("/header", {
-          name: data.firstname,
-          email: data.email
-        });
       });
   };
 
   handleRegister = async event => {
     event.preventDefault();
-    console.log("State: " + this.state.firstName + ", " + this.state.email);
     if (
       this.state.firstName === "" ||
       this.state.lastName === "" ||
@@ -110,8 +134,6 @@ class LoginOrSignup extends React.Component {
       })
         .then(res => res.json())
         .then(data => {
-          console.log("this is the data: " + data);
-          console.log(this.props);
           this.props.history.push("/", { name: data });
         })
         .catch(err => {
