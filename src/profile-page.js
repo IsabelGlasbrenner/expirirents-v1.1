@@ -145,7 +145,7 @@ class ProfilePage extends React.Component {
                     {this.state.listings.map((listing, i) => {
                       return (
                         <div key={i} className="card">
-                          <Slideshow images={['https://amp.businessinsider.com/images/5bb256ca9a4ab803db619ada-750-544.jpg','https://s3.amazonaws.com/images.rvs.com/images/popular-brands/2018-thor_freedom_elite.jpg','https://cdn2.rvtrader.com/v1/media/5dd256bc2f0d6941c929e897.jpg?width=1024&height=768&quality=70']}/>
+						  <Slideshow images={["https://www.generalrv.com/blog/wp-content/uploads/2019/05/ClassA_Diesel-exteriorFleetwood_Discovery-1.jpg", "https://parade.com/wp-content/uploads/2019/09/rvshare-las-vegas-nv-ftr.jpeg", "https://www.tripsavvy.com/thmb/RQjFHEqHqmkgYjG0MwwWQVnbgJ4=/2142x1424/filters:no_upscale():max_bytes(150000):strip_icc()/class-a-motorhome-56a817715f9b58b7d0f08c05.jpg"]}/>
                           <Link
 						    style={{ textDecoration: 'none' }}
                             to={{
