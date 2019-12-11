@@ -23,7 +23,8 @@ const initialState = {
   location: "",
   to: undefined,
   from: undefined,
-  type: ""
+  type: "",
+  img: []
 };
 
 let saveState = {
@@ -235,26 +236,27 @@ class Listings extends React.Component {
     }
   }
 
-    getImages(listID) {
-		var retData;
-		fetch("http://18.224.3.21/user/getImages", {
-			method: "post",
-			headers: {
-				"Content-Type": "application/json",
-				"Accept": "application/json"
-			},
-			body: JSON.stringify({
-				listingID: listID
-			})
-		})
-		.then(res => res.json())
-		.then(data => {
-			console.log("DATA: " + data);
-			return data;
-
-		})
-		.catch(err => console.log(err));
-	}
+    // async getImages(listID) {
+	// 	var retData;
+	// 	await fetch("http://18.224.3.21/user/getImages", {
+	// 		method: "post",
+	// 		headers: {
+	// 			"Content-Type": "application/json",
+	// 			"Accept": "application/json"
+	// 		},
+	// 		body: JSON.stringify({
+	// 			listingID: listID
+	// 		})
+	// 	})
+	// 	.then(res => res.json())
+	// 	.then(data => {
+	// 		console.log("DATA: " + data);
+	// 		retData = data;
+	// 	})
+	// 	.catch(err => console.log(err));
+	// 	console.log("RET: " + retData);
+	// 	return Promise.resolve(retData);
+	// }
 
 
   render() {
@@ -373,6 +375,7 @@ class Listings extends React.Component {
 					this.state.fData.map((listings, i) => {
 						return (
 							<div key={i} className="card">
+								<Slideshow images={["https://www.generalrv.com/blog/wp-content/uploads/2019/05/ClassA_Diesel-exteriorFleetwood_Discovery-1.jpg", "https://parade.com/wp-content/uploads/2019/09/rvshare-las-vegas-nv-ftr.jpeg", "https://www.tripsavvy.com/thmb/RQjFHEqHqmkgYjG0MwwWQVnbgJ4=/2142x1424/filters:no_upscale():max_bytes(150000):strip_icc()/class-a-motorhome-56a817715f9b58b7d0f08c05.jpg"]}/>
 								<Link style={{ textDecoration: 'none' }} to={{pathname: '/single-listing', state: {listID: listings._id}}} >
 									<Container fluid style={{ lineHeight: '3px' }} className="container">
 										<Row justify="start">
