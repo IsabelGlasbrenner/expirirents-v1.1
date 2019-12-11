@@ -44,26 +44,29 @@ class Listings extends React.Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.state = initialState;
-
     if (props.history.location.state) {
       this.name = props.history.location.state.name;
       this.email = props.history.location.state.email;
     }
 
     this.state.email = this.email;
-    console.log("name listings----->" + this.name);
-    console.log("email listings-----> " + this.email);
+    console.log("name----->" + this.name);
+    console.log("email-----> " + this.email);
 
-    if (!saveState.email) {
+    if (this.email) {
       saveState.email = this.email;
-    }
-    if (!saveState.name) {
       saveState.name = this.name;
+      console.log("can update email");
     }
+
     console.log("saved state email listings-----> " + saveState.email);
 
+    loggedIn = false;
+
     if (saveState.email) {
-      loggedIn = true;
+      if (saveState.email != "logout") {
+        loggedIn = true;
+      }
     }
   }
 

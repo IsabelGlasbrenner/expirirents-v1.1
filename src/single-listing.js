@@ -7,6 +7,7 @@ import { Container, Row, Col } from 'react-grid-system';
 import SimpleReactCalendar from 'simple-react-calendar'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
+
 const initialState = {
 	listing: {
 		availableDate: {
@@ -16,7 +17,8 @@ const initialState = {
 			}]
 		}
 	},
-	newEnd: undefined
+	newEnd: undefined,
+	price: {}
 }
 
 class SingleListing extends React.Component {
@@ -47,7 +49,10 @@ class SingleListing extends React.Component {
 	}
 
 	handleSubmit = async event => {
-		console.log("This button doesn't have anywhere to redirect you yet. Sorry!")
+		const { listID } = this.props.location.state;
+		const price = this.state.listing.price;
+		this.props.history.push("/checkout", {listing: listID, price: price});
+
 	}
 
   render() {

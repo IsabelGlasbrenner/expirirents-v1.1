@@ -9,6 +9,8 @@ import LoginOrSignup from "./login-or-signup";
 import ProfilePage from "./profile-page";
 import AddListing from "./add-listing";
 import AddImages from "./add-images";
+import CheckoutForm from "./checkout";
+import Booking from "./booking.js"
 import Header from "./components/header.js";
 
 import * as serviceWorker from "./serviceWorker";
@@ -24,6 +26,7 @@ const routing = (
 			<Route path="/add-listing" component={AddListing} />
 			<Route path="/add-images" component={AddImages} />
 			<Route path="/header" component={Header} />
+			<Route path="/checkout" component={Booking} />
 		</div>
 	</Router>
 );

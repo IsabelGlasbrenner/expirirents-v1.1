@@ -5,12 +5,12 @@
   width: 100%;
 }
 
-.container{
-	padding: 0px;
-	margin: 0px;
+.container {
+  padding: 0px;
+  margin: 0px;
 }
 
-.header-link{
+.header-link {
   float: right;
   color: #ffffff;
   font-weight: 200;
@@ -18,12 +18,20 @@
   margin: 20px;
 }
 
-.header-link:hover{
-	color: #eb8e6d;
+.header-link:hover {
+  color: #eb8e6d;
 }
 
 .expiriRents-logo {
   margin-top: 15px;
   height: 40px;
   float: left;
+}
+
+.logoutButton {
+  background-color: #eb8e6d;
+  float: right;
+  color: #ffffff;
+  font-weight: 200;
+  margin-top: 10px;
 }

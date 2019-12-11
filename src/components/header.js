@@ -3,6 +3,7 @@ import "./css/header.css";
 import logo from "../images/logo.jpg";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 let initialState = {
   email: "",
@@ -27,21 +28,47 @@ class Header extends React.Component {
     }
 
     this.state.email = this.email;
-    console.log("name add----->" + this.name);
-    console.log("email add-----> " + this.email);
 
-    if (!saveState.email) {
+    if (this.email) {
       saveState.email = this.email;
-    }
-    if (!saveState.name) {
       saveState.name = this.name;
     }
-    console.log("saved state email add-----> " + saveState.email);
+
+    loggedIn = false;
 
     if (saveState.email) {
-      loggedIn = true;
+      if (saveState.email != "logout") {
+        loggedIn = true;
+      }
     }
   }
+
+  handleLogout = async event => {
+    console.log("we are going to logout");
+    saveState.email = "logout";
+    saveState.name = "";
+    loggedIn = false;
+
+    this.clearLoginData();
+
+    console.log("sent it!");
+  };
+
+  clearLoginData = async event => {
+    console.log("clearing the login data");
+    this.props.history.push("/login-or-signup", {
+      name: saveState.name,
+      email: saveState.email
+    });
+  };
+
+  clearAddListingData = async event => {
+    console.log("clearing the add listings data");
+    this.props.history.push("/add-listing", {
+      name: saveState.name,
+      email: saveState.email
+    });
+  };
 
   render() {
     return (
@@ -50,9 +77,20 @@ class Header extends React.Component {
           <Link to="/">
             <img src={logo} className="expiriRents-logo" alt="expiriRents" />
           </Link>
-          <Link to="/login-or-signup" className="header-link">
-            Login/Signup
-          </Link>
+          {loggedIn ? (
+            <div>
+              <Button className="logoutButton" onClick={this.handleLogout}>
+                Logout
+              </Button>
+              <Link to="/profile-page" className="header-link">
+                Profile
+              </Link>
+            </div>
+          ) : (
+            <Link to="/login-or-signup" className="header-link">
+              Login/Signup
+            </Link>
+          )}
           <Link
             to={{
               pathname: "/listings",
@@ -61,6 +99,9 @@ class Header extends React.Component {
             className="header-link"
           >
             All Listings
+          </Link>
+          <Link to="/add-listing" className="header-link">
+            Add Listing
           </Link>
         </div>
       </header>

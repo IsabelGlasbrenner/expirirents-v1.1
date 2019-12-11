@@ -9,6 +9,7 @@ import Header from "./components/header.js";
 import { Container, Row, Col } from "react-grid-system";
 import Slideshow from "./components/slideshow.js";
 import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 const initialState = {
   email: "",
@@ -32,22 +33,24 @@ class ProfilePage extends React.Component {
     }
 
     this.state.email = this.email;
-    console.log("name----->" + this.name);
-    console.log("email-----> " + this.email);
 
-    if (!saveState.email) {
+    if (this.email) {
       saveState.email = this.email;
-    }
-    if (!saveState.name) {
       saveState.name = this.name;
     }
-    console.log("saved state email-----> " + saveState.email);
+
+    console.log("saved state email profile-----> " + saveState.email);
+
+    loggedIn = false;
 
     if (saveState.email) {
-      loggedIn = true;
+      if (saveState.email != "logout") {
+        loggedIn = true;
+      }
     }
 
-    if (!loggedIn) {
+    if (!loggedIn && saveState.email != "logout") {
+      console.log("Redirecting to login page.");
       this.props.history.push("/login-or-signup");
     }
   }

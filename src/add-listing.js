@@ -44,12 +44,10 @@ let saveState = {
 };
 
 let loggedIn = false;
-let myProps;
 
 class AddListing extends React.Component {
   constructor(props) {
     super(props);
-    myProps = props;
 
     this.state = initialState;
     if (props.history.location.state) {
@@ -58,19 +56,20 @@ class AddListing extends React.Component {
     }
 
     this.state.email = this.email;
-    console.log("name add----->" + this.name);
-    console.log("email add-----> " + this.email);
 
-    if (!saveState.email) {
+    if (this.email) {
       saveState.email = this.email;
-    }
-    if (!saveState.name) {
       saveState.name = this.name;
     }
+
     console.log("saved state email add-----> " + saveState.email);
-	
-	if (saveState.email) {
-		loggedIn = true;
+
+    loggedIn = false;
+
+    if (saveState.email) {
+      if (saveState.email != "logout") {
+        loggedIn = true;
+      }
     }
   }
 
