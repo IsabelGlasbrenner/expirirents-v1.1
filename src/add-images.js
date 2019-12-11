@@ -16,43 +16,45 @@ const initialState = {
 	image1: "",
 	image2: "",
 	image3: "",
-	image4: ""
+	image4: "",
+	listingID: ""
 }
 
-const listingID = "";
 class AddImages extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = initialState;
-		console.log(props);
 	}
-
+	
 	addImages = async event => {
+		await this.setState({listingID: this.props.location.state.listID });
 		event.preventDefault();
 
 		if (this.state.images1 === "" || this.state.images2 === "") 
 			alert("Please add at least two images");
 		else {
 			for(var i = 0; i < 4; i++) {
-				if (i == 0 && this.state.image1 != "") this.postImage(this.state.image1, listingID);
-				if (i == 1 && this.state.image2 != "") this.postImage(this.state.image2, listingID);
-				if (i == 2 && this.state.image3 != "") this.postImage(this.state.image3, listingID);
-				if (i == 3 && this.state.image4 != "") this.postImage(this.state.image4, listingID);
+				if (i == 0 && this.state.image1 != "") this.postImage(this.state.image1);
+				if (i == 1 && this.state.image2 != "") this.postImage(this.state.image2);
+				if (i == 2 && this.state.image3 != "") this.postImage(this.state.image3);
+				if (i == 3 && this.state.image4 != "") this.postImage(this.state.image4);
 			}
 			this.props.history.push("/listings", {location: "", to: undefined, from: undefined, type: ""});
 		}
 	}
 
-	postImage(image, listingID) {
-		fetch("http://18.224.3.21/user/addListing", {
+	postImage(image) {
+		console.log("SENDING: " + this.state.listingID);
+		console.log("SENDING: " + image);
+		fetch("http://18.224.3.21/user/listingImage", {
 			method: "post",
 			headers: {
 				"Content-Type": "application/json",
 				"Accept": "application/json"
 			},
 			body: JSON.stringify({
-				listingID: listingID,
-				image: image
+				listingID: this.state.listingID,
+				filepath: image
 			})
 		})
 			.then(res => res.json())
@@ -124,7 +126,7 @@ class AddImages extends React.Component {
 								/>
 							</Col>
 							<Col className="field">
-								<Button id="button" className="form-submit" onClick={this.addListing}>
+								<Button id="button" className="form-submit" onClick={this.addImages}>
 									Submit
 							</Button>
 							</Col>
