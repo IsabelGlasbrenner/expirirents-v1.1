@@ -12,16 +12,16 @@ import AddListing from "./add-listing";
 import * as serviceWorker from "./serviceWorker";
 
 const routing = (
-	<Router>
-		<div>
-			<Route exact path="/" component={App} />
-			<Route path="/listings" component={Listings} />
-			<Route path="/single-listing" component={SingleListing} />
-			<Route path="/login-or-signup" component={LoginOrSignup} />
-			<Route path="/profile-page" component={ProfilePage} />
-			<Route path="/add-listing" component={AddListing} />
-		</div>
-	</Router>
+  <Router>
+    <div>
+      <Route exact path="/" component={App} />
+      <Route path="/listings" component={Listings} />
+      <Route path="/single-listing" component={SingleListing} />
+      <Route path="/login-or-signup" component={LoginOrSignup} />
+      <Route path="/profile-page" component={ProfilePage} />
+      <Route path="/add-listing" component={AddListing} />
+    </div>
+  </Router>
 );
 
 ReactDOM.render(routing, document.getElementById("root"));
