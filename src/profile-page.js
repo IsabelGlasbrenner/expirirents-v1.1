@@ -10,6 +10,7 @@ import { Container, Row, Col } from "react-grid-system";
 import Slideshow from "./components/slideshow.js";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import {FaTrash} from "react-icons/fa";
 
 const initialState = {
   email: "",
@@ -89,6 +90,24 @@ class ProfilePage extends React.Component {
       });
   }
 
+  deleteListing(dataID) {
+	fetch("http://18.224.3.21/user/deleteListing", {
+		method: "post",
+		headers: {
+		  "Content-Type": "application/json",
+		  Accept: "application/json"
+		},
+		body: JSON.stringify({ listingID: dataID })
+	  })
+		.then(res => res.json())
+		.then(data => {
+		  if (data.description) {
+			this.state.listings.push(data);
+			this.setState(this.state);
+		  }
+		});
+  }
+
   render() {
     return (
       <div className="profile-page">
@@ -126,8 +145,9 @@ class ProfilePage extends React.Component {
                     {this.state.listings.map((listing, i) => {
                       return (
                         <div key={i} className="card">
-                          <Slideshow />
+                          <Slideshow images={['https://amp.businessinsider.com/images/5bb256ca9a4ab803db619ada-750-544.jpg','https://s3.amazonaws.com/images.rvs.com/images/popular-brands/2018-thor_freedom_elite.jpg','https://cdn2.rvtrader.com/v1/media/5dd256bc2f0d6941c929e897.jpg?width=1024&height=768&quality=70']}/>
                           <Link
+						    style={{ textDecoration: 'none' }}
                             to={{
                               pathname: "/single-listing",
                               state: { listID: listing._id }
@@ -145,7 +165,7 @@ class ProfilePage extends React.Component {
                                   </p>
                                 </Col>
                                 <Col>
-                                  <p id="location">{listing.location}</p>
+                                  <p id="location">{listing.city}</p>
                                 </Col>
                               </Row>
                               <Row>
@@ -156,6 +176,7 @@ class ProfilePage extends React.Component {
                               </Row>
                             </Container>
                           </Link>
+							<button id="invis" onClick={this.deleteListing(listing._id)}><FaTrash/></button>
                         </div>
                       );
                     })}
