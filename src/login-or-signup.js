@@ -46,18 +46,20 @@ class LoginOrSignup extends React.Component {
 
     if (saveState.email) {
       if (saveState.email == "logout") {
+        /**
         this.props.history.push("/listings", {
           name: saveState.name,
           email: saveState.email
         });
-        this.props.history.push("/profile", {
+        this.props.history.push("/profile-page", {
           name: saveState.name,
           email: saveState.email
         });
+        /**
         this.props.history.push("/add-listing", {
           name: saveState.name,
           email: saveState.email
-        });
+        });*/
       } else {
         this.props.history.push("/profile-page");
       }
@@ -70,8 +72,6 @@ class LoginOrSignup extends React.Component {
   };
 
   handleLogin = async event => {
-    event.preventDefault();
-
     if (this.state.email === "" || this.state.password === "")
       alert("Enter Login Credentials");
     fetch("http://18.224.3.21/user/login", {
@@ -136,6 +136,7 @@ class LoginOrSignup extends React.Component {
         .then(data => {
           this.props.history.push("/", { name: data });
         })
+        .then(this.handleLogin())
         .catch(err => {
           console.log(err);
         });
