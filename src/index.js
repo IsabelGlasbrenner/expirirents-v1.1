@@ -8,6 +8,7 @@ import SingleListing from "./single-listing";
 import LoginOrSignup from "./login-or-signup";
 import ProfilePage from "./profile-page";
 import AddListing from "./add-listing";
+import Header from "./components/header.js";
 
 import * as serviceWorker from "./serviceWorker";
 
@@ -20,6 +21,7 @@ const routing = (
       <Route path="/login-or-signup" component={LoginOrSignup} />
       <Route path="/profile-page" component={ProfilePage} />
       <Route path="/add-listing" component={AddListing} />
+      <Route path="/header" component={Header} />
     </div>
   </Router>
 );
