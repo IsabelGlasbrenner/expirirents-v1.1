@@ -11,6 +11,7 @@ const fadeProperties = {
 }
 
 const Slideshow = (images) => {
+	console.log("SS:" + images)
 	return (
 		<Fade {...fadeProperties}>
 			{

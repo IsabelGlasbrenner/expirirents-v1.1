@@ -10,9 +10,8 @@ const Footer = () => {
 	return (
 		<footer>
 			<div className="container">
-				<Link to="#" className="link">Home</Link>
-				<Link to="#" className="link">Listings</Link>
-				<Link to="/add-listing" className="link">New Listing</Link>
+				<Link to="/" className="link">Home</Link>
+				<Link to={{pathname: "/listings", state: { location: "", to: undefined, from: undefined, type: "" } }} className="link">Listings</Link>		<Link to="/add-listing" className="link">New Listing</Link>
 				<Link to="/login-or-signup" className="link">Login/Signup</Link>
 				<Link to="/profile-page" className="link">Profile page</Link>
 			</div>

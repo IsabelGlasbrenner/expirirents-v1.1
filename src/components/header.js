@@ -79,7 +79,7 @@ class Header extends React.Component {
           </Link>
           {loggedIn ? (
             <div>
-              <Button className="logoutButton" onClick={this.handleLogout}>
+              <Button id="button" className="logoutButton" onClick={this.handleLogout}>
                 Logout
               </Button>
               <Link to="/profile-page" className="header-link">

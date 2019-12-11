@@ -236,7 +236,7 @@ class Listings extends React.Component {
   }
 
     getImages(listID) {
-		console.log(listID)
+		var retData;
 		fetch("http://18.224.3.21/user/getImages", {
 			method: "post",
 			headers: {
@@ -249,7 +249,9 @@ class Listings extends React.Component {
 		})
 		.then(res => res.json())
 		.then(data => {
-			console.log("DATA: " + data)
+			console.log("DATA: " + data);
+			return data;
+
 		})
 		.catch(err => console.log(err));
 	}
@@ -369,10 +371,8 @@ class Listings extends React.Component {
 
 				<div className="grid-container"> {
 					this.state.fData.map((listings, i) => {
-						this.getImages(listings._id)
 						return (
 							<div key={i} className="card">
-								<Slideshow images={['https://amp.businessinsider.com/images/5bb256ca9a4ab803db619ada-750-544.jpg','https://s3.amazonaws.com/images.rvs.com/images/popular-brands/2018-thor_freedom_elite.jpg','https://cdn2.rvtrader.com/v1/media/5dd256bc2f0d6941c929e897.jpg?width=1024&height=768&quality=70']}/>
 								<Link style={{ textDecoration: 'none' }} to={{pathname: '/single-listing', state: {listID: listings._id}}} >
 									<Container fluid style={{ lineHeight: '3px' }} className="container">
 										<Row justify="start">
