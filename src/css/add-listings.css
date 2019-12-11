@@ -16,6 +16,19 @@
   min-height: 750px;
 }
 
+.formgroup2 {
+  color: #9e9c9b;
+  margin-left: 40%;
+  border-style: solid;
+  border-radius: 10px;
+
+  margin-bottom: 200px;
+  border-color: #012e60;
+  text-align: left;
+  width: 300px;
+  min-height: 450px;
+}
+
 .form-title {
   font-weight: 200;
   font-size: 35px;

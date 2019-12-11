@@ -191,6 +191,7 @@ class LoginOrSignup extends React.Component {
                   </Col>
                   <Col>
                     <Button
+					  id="button"
                       className="password-submit"
                       onClick={this.handleLogin}
                     >
@@ -279,6 +280,7 @@ class LoginOrSignup extends React.Component {
                   </Col>
                   <Col>
                     <Button
+					  id="button"
                       className="password-submit"
                       onClick={this.handleRegister}
                     >

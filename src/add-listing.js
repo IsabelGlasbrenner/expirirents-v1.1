@@ -82,52 +82,52 @@ class AddListing extends React.Component {
     );
     event.preventDefault();
 
-    if (
-      this.state.email === "" ||
-      this.state.vehiclename === "" ||
-      this.state.description === "" ||
-      this.state.owner === "" ||
-      this.state.numWheels === "" ||
-      this.state.age === null ||
-      this.state.price === "" ||
-      this.state.rating === null ||
-      this.state.vehicletype === "" ||
-      this.state.startDate === "" ||
-      this.state.endDate === "" ||
-      this.state.city === "" ||
-      this.state.state === ""
-    )
-      alert("Enter all of the required data");
-    else {
-      fetch("http://18.224.3.21/user/addListing", {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        },
-        body: JSON.stringify({
-          email: saveState.email,
-          vehiclename: this.state.vehiclename,
-          description: this.state.description,
-          owner: this.state.owner,
-          numWheels: this.state.numWheels,
-          age: this.state.age,
-          price: this.state.price,
-          rating: this.state.rating,
-          pickup: this.state.pickup,
-          vehicletype: this.state.vehicletype,
-          availabledate: [this.state.startDate, this.state.endDate],
-          city: this.state.city,
-          state: this.state.state
-        })
-      })
-        .then(res => res.json())
-        .then(data => {
-          console.log("Returned Data: " + data.description);
-        })
-        .catch(err => console.log(err));
-    }
-  };
+		if (this.state.email === "" ||
+			this.state.vehiclename === "" ||
+			this.state.description === "" ||
+			this.state.owner === "" ||
+			this.state.numWheels === "" ||
+			this.state.age === null ||
+			this.state.price === "" ||
+			this.state.rating === null ||
+			this.state.vehicletype === "" ||
+			this.state.startDate === "" ||
+			this.state.endDate === "" ||
+			this.state.city === "" ||
+			this.state.state === ""
+		)
+			alert("Enter all of the required data");
+		else {
+			fetch("http://18.224.3.21/user/addListing", {
+				method: "post",
+				headers: {
+					"Content-Type": "application/json",
+					"Accept": "application/json"
+				},
+				body: JSON.stringify({
+					email: saveState.email,
+					vehiclename: this.state.vehiclename,
+					description: this.state.description,
+					owner: this.state.owner,
+					numWheels: this.state.numWheels,
+					age: this.state.age,
+					price: this.state.price,
+					rating: this.state.rating,
+					pickup: this.state.pickup,
+					vehicletype: this.state.vehicletype,
+					availabledate: [this.state.startDate, this.state.endDate],
+					city: this.state.city,
+					state: this.state.state,
+				})
+			})
+				.then(res => res.json())
+				.then(data => {
+					console.log("Returned Data: " + data._id);
+					this.props.history.push("/add-images", {listID: data._id});
+				})
+				.catch(err => console.log(err));
+		}
+	}
 
   handleChange = async event => {
     console.log("handle change called /n");
@@ -303,7 +303,7 @@ class AddListing extends React.Component {
                   />
                 </Col>
                 <Col className="field">
-                  <Button className="form-submit" onClick={this.addListing}>
+                  <Button id="button" className="form-submit" onClick={this.addListing}>
                     Submit
                   </Button>
                 </Col>
@@ -314,7 +314,7 @@ class AddListing extends React.Component {
           <div className="notLoggedIn">
             <p className="notLoggedInMessage">Login to add a listing.</p>
             <Link to="/login-or-signup">
-              <Button className="form-submit">Login or Signup</Button>
+              <Button id="button" className="form-submit">Login or Signup</Button>
             </Link>
           </div>
         )}
