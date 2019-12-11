@@ -12,7 +12,7 @@ class Booking extends Component {
             const { listing, price } = this.props.location.state;
         console.log("ABC", listing);
         }
-        console.log(this.props);
+        console.log("AAAAAAAAAA ",this.props);
     }
 
     componentDidMount() {

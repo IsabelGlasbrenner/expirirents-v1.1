@@ -8,20 +8,26 @@ class CheckoutForm extends Component {
     this.state = {complete: false}
     this.submit = this.submit.bind(this);
   }
-
+  
   async submit(ev) {
     let {token} = await this.props.stripe.createToken({name: "Name"});
     console.log(token);
+    var details = { 'stripeToken' : token.id , 'amount' : this.props.price * 100, 'currency' : 'USD' } 
+    console.log("Check",this.props);
+    var formBody = [];
+    for (var property in details) {
+        var encodedKey = encodeURIComponent(property);
+        var encodedValue = encodeURIComponent(details[property]);
+        formBody.push(encodedKey + "=" + encodedValue);
+    }
+    formBody = formBody.join("&");
     let response = await fetch("http://18.224.3.21/user/charge", {
       method: "POST",
       headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        "Accept": "application/json"
     },
-      body:JSON.stringify( {
-          stripeToken: token.id, 
-          amount: this.props.price
-        })
+    body: formBody
       
     })
     //if (response.ok) this.setState({complete: true})
@@ -31,9 +37,9 @@ class CheckoutForm extends Component {
         return res.json();
     })
     .then(data => {
-        // if(data === "Your payment was successful!!")
-        //     this.setState({complete: true});
-        console.log("Returned Data: ",data);
+         if(data === "success")
+         this.setState({complete: true});
+        console.log("Returned Data: ", data);
     })
     .catch(err => console.log(err));
 

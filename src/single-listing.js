@@ -8,7 +8,8 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 const initialState = {
-	listing: {}
+	listing: {},
+	price: {}
 }
 
 class SingleListing extends React.Component {
@@ -36,8 +37,8 @@ class SingleListing extends React.Component {
 	}
 
 	handleSubmit = async event => {
-		const { listID, price } = this.props.location.state;
-		console.log(this.props);
+		const { listID } = this.props.location.state;
+		const price = this.state.listing.price;
 		this.props.history.push("/checkout", {listing: listID, price: price});
 
 	}
