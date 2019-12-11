@@ -57,6 +57,7 @@ class Listings extends React.Component {
 		.then(data => {
 			this.setState({data: data});
 			this.setState({fData: this.filterData(data,{type: this.state.type, location: this.state.location, to: this.state.to, from: this.state.from})});
+			console.log(data)
 		})
 	}
 
@@ -296,7 +297,7 @@ class Listings extends React.Component {
 					this.state.fData.map((listings, i) => {
 						return (
 							<div key={i} className="card">
-								<Slideshow/>
+								<Slideshow images={['https://amp.businessinsider.com/images/5bb256ca9a4ab803db619ada-750-544.jpg','https://s3.amazonaws.com/images.rvs.com/images/popular-brands/2018-thor_freedom_elite.jpg','https://cdn2.rvtrader.com/v1/media/5dd256bc2f0d6941c929e897.jpg?width=1024&height=768&quality=70']}/>
 								<Link to={{pathname: '/single-listing', state: {listID: listings._id}}}>
 									<Container fluid style={{ lineHeight: '3px' }} className="container">
 										<Row justify="start">

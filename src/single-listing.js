@@ -56,7 +56,7 @@ class SingleListing extends React.Component {
         <Header />
         <Row className="top-row">
           <div className="slides">
-            <Slideshow className="photos"/>
+            <Slideshow images={['https://amp.businessinsider.com/images/5bb256ca9a4ab803db619ada-750-544.jpg','https://s3.amazonaws.com/images.rvs.com/images/popular-brands/2018-thor_freedom_elite.jpg','https://cdn2.rvtrader.com/v1/media/5dd256bc2f0d6941c929e897.jpg?width=1024&height=768&quality=70']} className="photos"/>
           </div>
           
           <div className="dates">

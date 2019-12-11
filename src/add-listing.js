@@ -84,8 +84,9 @@ class AddListing extends React.Component {
 			})
 				.then(res => res.json())
 				.then(data => {
-					console.log("Returned Data: " + data.description);
-					this.props.history.push("/listings", {location: "", to: undefined, from: undefined, type: ""});
+					// console.log("Returned Data: " + data.description);
+					console.log("Returned Data: " + data);
+					//this.props.history.push("/add-images", {listID: data.listID});
 				})
 				.catch(err => console.log(err));
 		}
