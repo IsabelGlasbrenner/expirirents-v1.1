@@ -75,6 +75,10 @@ class LoginOrSignup extends React.Component {
           name: data.firstname,
           email: data.email
         });
+        this.props.history.push("/header", {
+          name: data.firstname,
+          email: data.email
+        });
       });
   };
 
