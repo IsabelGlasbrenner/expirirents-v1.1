@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Elements, StripeProvider} from 'react-stripe-elements';
 import CheckoutForm from './checkout';
-
+import Footer from "./components/footer.js";
+import Header from "./components/header.js";
 
 
 class Booking extends Component {
@@ -22,10 +23,12 @@ class Booking extends Component {
         return (
             <StripeProvider apiKey="pk_test_NYZ95kYjokIKwalZO7GJTIfd00lx09wzFm">
                 <div className="example">
+                    <Header />
                     <h1>Checkout</h1>
                     <Elements>
                         <CheckoutForm price = { this.props.location.state.price }/>
                     </Elements>
+                    <Footer />
                 </div>
             </StripeProvider>
         );
