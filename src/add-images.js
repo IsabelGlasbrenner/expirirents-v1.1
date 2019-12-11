@@ -76,7 +76,7 @@ class AddImages extends React.Component {
 				<Col>
 					<Form onSubmit={this.addImages}>
 						<p className="form-title">Please add 2 or more images to your listing! Input the URLs of your hosted images</p>
-						<Form.Group className="formgroup">
+						<Form.Group className="formgroup2">
 							<Col className="field-1">
 								<Row>
 									<Form.Label className="field-labels">Image 1  <FaCamera /></Form.Label>

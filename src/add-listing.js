@@ -106,7 +106,7 @@ class AddListing extends React.Component {
 					"Accept": "application/json"
 				},
 				body: JSON.stringify({
-					email: "isabel.glasbrenner@gmail.com",
+					email: saveState.email,
 					vehiclename: this.state.vehiclename,
 					description: this.state.description,
 					owner: this.state.owner,
