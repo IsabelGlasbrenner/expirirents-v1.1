@@ -6,6 +6,7 @@ import Header from './components/header.js';
 import { Container, Row, Col } from 'react-grid-system';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
+
 const initialState = {
 	listing: {}
 }
@@ -35,7 +36,10 @@ class SingleListing extends React.Component {
 	}
 
 	handleSubmit = async event => {
-		console.log("This button doesn't have anywhere to redirect you yet. Sorry!")
+		const { listID, price } = this.props.location.state;
+		console.log(this.props);
+		this.props.history.push("/checkout", {listing: listID, price: price});
+
 	}
 
   render() {
@@ -48,7 +52,7 @@ class SingleListing extends React.Component {
           </div>
           
           <div className="dates">
-            <button onClick={this.handleSubmit}>Book Now</button>
+			  <button className="book-btn" onClick={this.handleSubmit}>Book Now </button>
           </div>
         </Row>
 
