@@ -1,133 +1,142 @@
-.parent{
-	width: 100%;
-	text-align: center;
+.parent {
+  width: 100%;
+  text-align: center;
 }
 
-.formgroup{
-	color: #9e9c9b;
-	margin-left: 40%;
-	border-style: solid;
-	border-radius: 10px;
+.formgroup {
+  color: #9e9c9b;
+  margin-left: 40%;
+  border-style: solid;
+  border-radius: 10px;
 
-	margin-bottom: 200px;
-	border-color: #012e60;
-	text-align: left;
-	width: 300px;
-	min-height: 750px;
+  margin-bottom: 200px;
+  border-color: #012e60;
+  text-align: left;
+  width: 300px;
+  min-height: 750px;
 }
 
-.form-title{
-	font-weight: 200;
-	font-size: 35px;
-	padding-bottom: 40px;
+.form-title {
+  font-weight: 200;
+  font-size: 35px;
+  padding-bottom: 40px;
 }
 
-.input-fields{
-	padding: 10px;
-	border-style: solid;
-	border-color: #9e9c9b;
-	border-radius: 3px;
-	border-width: 1px;
-	width: 200px;
-	margin-bottom: 30px;
-	margin-left: 35px;
+.input-fields {
+  padding: 10px;
+  border-style: solid;
+  border-color: #9e9c9b;
+  border-radius: 3px;
+  border-width: 1px;
+  width: 200px;
+  margin-bottom: 30px;
+  margin-left: 35px;
 }
 
-.production-year{
-	padding: 10px;
-	border-style: solid;
-	border-color: #012e60;
-	border-radius: 3px;
-	border-width: 1px;
-	width: 200px;
+.production-year {
+  padding: 10px;
+  border-style: solid;
+  border-color: #012e60;
+  border-radius: 3px;
+  border-width: 1px;
+  width: 200px;
 }
 
-.field-labels{
-	font-size: 15px;
-	padding-left: 20px;
-	margin-left: 30px;
+.field-labels {
+  font-size: 15px;
+  padding-left: 20px;
+  margin-left: 30px;
 }
 
-.form-submit{
-	border-radius: 3px;
-	width: 280px;
-	margin-top: 10px;
-	background-color: #eb8e6d;
-	margin-bottom: 20px;
-	margin-left: 10px;
+.form-submit {
+  border-radius: 3px;
+  width: 280px;
+  margin-top: 10px;
+  background-color: #eb8e6d;
+  margin-bottom: 20px;
+  margin-left: 10px;
 }
 
-.field{
-	padding-left: 20px;
+.field {
+  padding-left: 20px;
 }
 
-.field-1{
-	padding-left: 20px;
-	margin-top: 30px;
+.field-1 {
+  padding-left: 20px;
+  margin-top: 30px;
 }
 
-.input-sub-field1{
-	padding: 10px;
-	border-style: solid;
-	border-color: #9e9c9b;
-	border-radius: 3px;
-	border-width: 1px;
-	width: 85px;
-	margin-bottom: 30px;
-	margin-left: 50px;
+.input-sub-field1 {
+  padding: 10px;
+  border-style: solid;
+  border-color: #9e9c9b;
+  border-radius: 3px;
+  border-width: 1px;
+  width: 85px;
+  margin-bottom: 30px;
+  margin-left: 50px;
 }
 
-.input-sub-field2{
-	padding: 10px;
-	border-style: solid;
-	border-color: #9e9c9b;
-	border-radius: 3px;
-	border-width: 1px;
-	width: 85px;
-	margin-bottom: 30px;
-	margin-left: 5px;
+.input-sub-field2 {
+  padding: 10px;
+  border-style: solid;
+  border-color: #9e9c9b;
+  border-radius: 3px;
+  border-width: 1px;
+  width: 85px;
+  margin-bottom: 30px;
+  margin-left: 5px;
 }
 
-.field-sub-label1{
-	font-size: 13px;
-	padding-left: 20px;
-	margin-left: 30px;
+.field-sub-label1 {
+  font-size: 13px;
+  padding-left: 20px;
+  margin-left: 30px;
 }
 
-.field-sub-label2{
-	font-size: 13px;
-	padding-left: 20px;
-	margin-left: 35px;
+.field-sub-label2 {
+  font-size: 13px;
+  padding-left: 20px;
+  margin-left: 35px;
 }
 
-.field-sub-label3{
-	font-size: 13px;
-	padding-left: 20px;
-	margin-left: 70px;
+.field-sub-label3 {
+  font-size: 13px;
+  padding-left: 20px;
+  margin-left: 70px;
 }
 
-.small{
-	padding: 10px;
-	border-style: solid;
-	border-color: #9e9c9b;
-	border-radius: 3px;
-	border-width: 1px;
-	width: 85px;
-	margin-bottom: 30px;
-	margin-left: 35px;
+.small {
+  padding: 10px;
+  border-style: solid;
+  border-color: #9e9c9b;
+  border-radius: 3px;
+  border-width: 1px;
+  width: 85px;
+  margin-bottom: 30px;
+  margin-left: 35px;
 }
 
-
-.more-information{
-	padding: 10px;
-	border-style: solid;
-	border-color: #9e9c9b;
-	border-radius: 3px;
-	border-width: 1px;
-	width: 200px;
-	margin-bottom: 30px;
-	margin-left: 35px;
-	height: 100px;
+.more-information {
+  padding: 10px;
+  border-style: solid;
+  border-color: #9e9c9b;
+  border-radius: 3px;
+  border-width: 1px;
+  width: 200px;
+  margin-bottom: 30px;
+  margin-left: 35px;
+  height: 100px;
 }
 
+.notLoggedIn {
+  min-height: 400px;
+}
 
+.notLoggedInMessage {
+  color: #012e60;
+  text-align: center;
+  font-weight: 400;
+  font-size: 40px;
+  margin: 100px;
+}
